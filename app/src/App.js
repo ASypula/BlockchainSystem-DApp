@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Web3 from 'web3'
 import './App.css'
 import contractABI from './blockchain/build/contracts/copied_abi.json';
+
+import Home from './components/Home';
+import Error from './components/Error';
+import Navigation from './components/Navigation';
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
 const contractAddress = '0x8DDC96f3418318b9E88E0fA1BCda0cedbaf4152b';
@@ -47,12 +52,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Hello, World!</h1>
-        <p>Your account: {this.state.account}</p>
-      </div>
+
+          <BrowserRouter>
+          <div>
+            <Navigation />
+              <Routes>
+               <Route path="/" element={<Home/>}/>
+              <Route element={<Error/>}/>
+             </Routes>
+          </div> 
+        </BrowserRouter>
     );
   }
 }
 
 export default App;
+
+{/* <div className="container">
+<h1>Home</h1>
+<p>Your account: </p>
+<p>Your account: {this.state.account}</p>
+</div> */}
