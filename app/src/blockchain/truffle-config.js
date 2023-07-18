@@ -7,6 +7,7 @@ module.exports = {
     }
   },
   solc: {
+    varsion: "pragma",
     optimizer: {
       enabled: true,
       runs: 200

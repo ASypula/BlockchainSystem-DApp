@@ -1,5 +1,5 @@
-var FirstContract = artifacts.require("./contracts/FirstContract.sol");
+var DataContract = artifacts.require("./contracts/DataContract.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(FirstContract);
+  deployer.deploy(DataContract);
 };

@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Web3 from 'web3'
 import './App.css'
-import contractABI from './blockchain/build/contracts/copied_abi.json';
+import contractABI from './blockchain/build/contracts/s1.json';
 
-import Home from './components/Home';
-import Error from './components/Error';
-import Navigation from './components/Navigation';
+import Home from './pages/Home';
+import Error from './pages/Error';
+import Header from './components/Header';
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
-const contractAddress = '0x8DDC96f3418318b9E88E0fA1BCda0cedbaf4152b';
+const contractAddress = '0xb29FDDCB9C5BB2ff5C0cDFe31DEB6C727E899aFf';
 
 class App extends Component {
-  componentWillMount() {
-    this.connectWallet()
-    this.tryContract()
-    //this.loadBlockchainData()
-  }
+  // componentWillMount() {
+  //   this.connectWallet()
+  //   this.tryContract()
+  //   //this.loadBlockchainData()
+  // }
 
   async loadBlockchainData() {
     // const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
@@ -41,7 +41,7 @@ class App extends Component {
   async tryContract(){
     const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
     const accounts = await web3.eth.getAccounts();
-    const result = await contractInstance.methods.fun2("Hello2!").call();
+    const result = await contractInstance.methods.foo("one").call();
     console.log('Magic casted:', result);
   }
 
@@ -52,17 +52,18 @@ class App extends Component {
 
   render() {
     return (
-
-          <BrowserRouter>
-          <div>
-            <Navigation />
-              <Routes>
-               <Route path="/" element={<Home/>}/>
-              <Route element={<Error/>}/>
-             </Routes>
-          </div> 
-        </BrowserRouter>
-    );
+      <BrowserRouter>
+        <div>
+          <Header/>
+          <hr />
+          <Routes>
+            <Route exact path="/" element={<Home/>}/>
+            <Route exact path="/about" element={<Error/>}/>
+            <Route exact path="/error" element={<Error/>}/>
+          </Routes>
+        </div> 
+      </BrowserRouter>
+  );
   }
 }
 
