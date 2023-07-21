@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Web3 from 'web3'
-import './App.css'
-import contractABI from './blockchain/build/contracts/s1.json';
+import './pages/style.css';
+import Web3 from 'web3';
+// import contractABI from './blockchain/build/contracts/s1.json';
 
-import Home from './pages/Home';
-import Error from './pages/Error';
+import AddPage from './pages/AddPage';
+import HistoryPage from './pages/HistoryPage';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
@@ -18,32 +21,32 @@ class App extends Component {
   //   //this.loadBlockchainData()
   // }
 
-  async loadBlockchainData() {
-    // const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
-    const accounts = await web3.eth.getAccounts()
-    this.setState({ account: accounts[0] })
-  }
+  // async loadBlockchainData() {
+  //   // const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
+  //   const accounts = await web3.eth.getAccounts()
+  //   this.setState({ account: accounts[0] })
+  // }
 
-  async connectWallet() {
+  // async connectWallet() {
     
-    if (window.ethereum) {
-      try {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        console.log('Connected account:', accounts[0]);
-      } catch (error) {
-        console.error('User rejected connection request:', error);
-      }
-    } else {
-      console.error('MetaMask is not installed. Please install it and try again.');
-    }
-  }
+  //   if (window.ethereum) {
+  //     try {
+  //       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  //       console.log('Connected account:', accounts[0]);
+  //     } catch (error) {
+  //       console.error('User rejected connection request:', error);
+  //     }
+  //   } else {
+  //     console.error('MetaMask is not installed. Please install it and try again.');
+  //   }
+  // }
 
-  async tryContract(){
-    const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
-    const accounts = await web3.eth.getAccounts();
-    const result = await contractInstance.methods.foo("one").call();
-    console.log('Magic casted:', result);
-  }
+  // async tryContract(){
+  //   const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
+  //   const accounts = await web3.eth.getAccounts();
+  //   const result = await contractInstance.methods.foo("one").call();
+  //   console.log('Magic casted:', result);
+  // }
 
   constructor(props) {
     super(props)
@@ -57,9 +60,11 @@ class App extends Component {
           <Header/>
           <hr />
           <Routes>
-            <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/about" element={<Error/>}/>
-            <Route exact path="/error" element={<Error/>}/>
+            <Route exact path="/" element={<HomePage/>}/>
+            <Route exact path="/add" element={<AddPage/>}/>
+            {/* <Route exact path="/history" element={<HistoryPage/>}/>
+            <Route exact path="/about" element={<AboutPage/>}/> */}
+            <Route element={<ErrorPage/>}/>
           </Routes>
         </div> 
       </BrowserRouter>

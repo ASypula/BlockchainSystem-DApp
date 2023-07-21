@@ -1,0 +1,10 @@
+.page {
+    text-align:center;
+    align-content:center;
+}
+
+button.addPart {
+    color: purple;
+    margin: 20%;
+
+}

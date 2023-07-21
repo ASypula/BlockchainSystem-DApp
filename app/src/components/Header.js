@@ -3,17 +3,22 @@ import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
-    <nav>
-      <NavLink exact activeClassName="active" to="/">
-        Home
-      </NavLink>
-      <NavLink activeClassName="active" to="/users">
-        Users
-      </NavLink>
-      <NavLink activeClassName="active" to="/contact">
-        Contact
-      </NavLink>
-    </nav>
+    <div className='menuBar'>
+      <nav>
+        <NavLink className="navLink" exact activeClassName="active" to="/">
+          HOME
+        </NavLink>
+        <NavLink className="navLink" activeClassName="active" to="/add">
+          ADD
+        </NavLink>
+        <NavLink className="navLink" activeClassName="active" to="/history">
+          HISTORY
+        </NavLink>
+        <NavLink className="navLink" activeClassName="active" to="/about">
+          ABOUT
+        </NavLink>
+      </nav>
+    </div>
   );
 }
 export default Header;
