@@ -1,11 +1,30 @@
-import React from 'react';
+import { React, useState } from 'react';
+import AddShipForm from '../components/AddShipForm';
 import AddButton from '../components/AddButton'
-import './style.css';
  
 const AddPage = () => {
+
+    const [isShown, setIsShown] = useState(false);
+    const handleClick = event => {
+        // 👇️ toggle shown state
+        setIsShown(current => !current);
+      };
+
     return (
         <div className="page">
-            <h1>ADD</h1>
+
+
+            <button onClick={handleClick}>Click</button>
+            {/* 👇️ show elements on click */}
+            {isShown && (
+            <div>
+                <AddShipForm/>
+            </div>
+            )}
+
+
+
+            <h1 className='title'>ADD</h1>
             <div class="btn-group-vertical">
                 <AddButton text="Add ship" />
                 <AddButton text="Add part" />

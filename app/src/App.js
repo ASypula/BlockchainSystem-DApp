@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './pages/style.css';
+import './styles/buttons.css';
+import './styles/header.css';
+import './styles/page.css';
 import Web3 from 'web3';
 // import contractABI from './blockchain/build/contracts/s1.json';
 
+import AboutPage from './pages/AboutPage';
 import AddPage from './pages/AddPage';
 import HistoryPage from './pages/HistoryPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
+import AddShipForm from './components/AddShipForm';
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
 const contractAddress = '0xb29FDDCB9C5BB2ff5C0cDFe31DEB6C727E899aFf';
@@ -56,15 +60,15 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Header/>
+        <div className='bg'>
+          <Header name="PartsChain"/>
           <hr />
           <Routes>
             <Route exact path="/" element={<HomePage/>}/>
             <Route exact path="/add" element={<AddPage/>}/>
-            {/* <Route exact path="/history" element={<HistoryPage/>}/>
-            <Route exact path="/about" element={<AboutPage/>}/> */}
-            <Route element={<ErrorPage/>}/>
+            <Route exact path="/history" element={<HistoryPage/>}/>
+            <Route exact path="/about" element={<AboutPage/>}/>
+            <Route path='*' element={<ErrorPage/>}/>
           </Routes>
         </div> 
       </BrowserRouter>

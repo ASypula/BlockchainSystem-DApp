@@ -2,9 +2,9 @@ import React from 'react';
  
 const ErrorPage = () => {
     return (
-       <div>
-          <p>Error: Page does not exist!</p>
-       </div>
+      <div className="page">
+         <h1 className='title'>ERROR</h1>
+   </div>
     );
 }
  
