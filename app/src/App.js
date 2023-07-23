@@ -14,8 +14,11 @@ import LoginPage from './pages/LoginPage';
 import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
 
+import global from './globals';
+import { tryContract1 } from './contractCalls';
+
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
-const contractAddress = '0xF2D3107D7D79067D01dCdb9f780Cc9740f71Bda8';
+const contractAddress = '0xfb920e5A1E68476b240d777527Eb60604CC7E195';
 
 
 function addNewPart(partName){
@@ -25,17 +28,16 @@ function addNewPart(partName){
 
 class App extends Component {
 
-  currAccount = ''; 
-
   componentDidMount() {
-    this.connectWallet()
-    this.loadBlockchainData()
+    this.connectWallet();
+    this.loadBlockchainData();
   }
 
   async loadBlockchainData() {
-    const accounts = await web3.eth.getAccounts()
-    this.currAccount = accounts[0];
-    console.log(this.currAccount);
+    const accounts = await web3.eth.getAccounts();
+    global.account = accounts[0];
+    const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
+    global.contract = contractInstance;
   }
 
   async connectWallet() {
@@ -53,15 +55,7 @@ class App extends Component {
   }
 
   async tryContract(name){
-    const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
-    const accounts = await web3.eth.getAccounts();
-    await contractInstance.methods.addShip(name).send({ from: accounts[0] });
-    console.log('New ship added');
-    let result = await contractInstance.methods.getShipName(0).call();
-    console.log(result);
-    await contractInstance.methods.addRecord("one", "two", "three").send({ from: accounts[0], gas: 194000});
-    let result2 = await contractInstance.methods.getRecord("one", "two").call();
-    console.log(result2);
+    tryContract1(global.account, global.contract, name);
   }
 
 

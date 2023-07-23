@@ -1,4 +1,5 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.8.2;
+pragma abicoder v2;
 
 contract DataContract {
 
@@ -13,12 +14,18 @@ contract DataContract {
   mapping(string=>string[]) partNames;
   mapping(string=>mapping(string=>ActionEntry[])) public allRecords;
 
+  // SHIP functions
+
   function addShip(string memory name) public {
     shipNames.push(name);
   }
 
   function getShipName(uint idx) public view returns (string memory) {
     return shipNames[idx];
+  }
+
+  function getAllShips() public view returns (string[] memory){
+    return shipNames;
   }
 
   function addPart(string memory shipName, string memory partName) public {

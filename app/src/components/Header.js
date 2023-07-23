@@ -12,16 +12,16 @@ function Header({name}) {
           </div>
       </div>
       <nav>
-        <NavLink className="navLink" exact activeClassName="active" to="/">
+        <NavLink className="navLink" to="/">
           HOME
         </NavLink>
-        <NavLink className="navLink" activeClassName="active" to="/add">
+        <NavLink className="navLink" to="/add">
           ADD
         </NavLink>
-        <NavLink className="navLink" activeClassName="active" to="/history">
+        <NavLink className="navLink" to="/history">
           HISTORY
         </NavLink>
-        <NavLink className="navLink" activeClassName="active" to="/about">
+        <NavLink className="navLink" to="/about">
           ABOUT
         </NavLink>
       </nav>

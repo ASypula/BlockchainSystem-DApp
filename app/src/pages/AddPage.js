@@ -10,7 +10,7 @@ const AddPage = ({addShip, addFunction}) => {
 
             <h1 className='title'>ADD</h1>
 
-            <div class="btn-group-vertical">
+            <div className="btn-group-vertical">
                 <AddShipForm text="Add ship" addFunction={addShip}/>
                 <AddPartForm text="Add part" addFunction={addFunction} />
                 <AddRecordForm text="Add record" addFunction={addFunction}/>

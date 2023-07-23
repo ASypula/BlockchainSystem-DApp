@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function AddRecordForm ({text, addFunction}) {
@@ -34,7 +33,7 @@ function AddRecordForm ({text, addFunction}) {
                         }}
                         id="editmodal"
                     >
-              <label for="name">
+              <label>
                 Name:
               </label>
               <input type="text" id="name"
@@ -45,15 +44,15 @@ function AddRecordForm ({text, addFunction}) {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <button className='Button Close' onClick={handleClose}>
             Close
-          </Button>
+          </button>
           <button
-                        className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
-                        form="editmodal"
-                    >
-                        Update
-                    </button>
+              className="Button Update"
+              form="editmodal"
+          >
+              Update
+          </button>
         </Modal.Footer>
       </Modal>
     </>
