@@ -18,6 +18,12 @@ import AddShipForm from './components/AddShipForm';
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
 const contractAddress = '0xb29FDDCB9C5BB2ff5C0cDFe31DEB6C727E899aFf';
 
+
+function addNewPart(partName){
+  console.log("In addNewPart")
+  console.log(partName);
+}
+
 class App extends Component {
   // componentWillMount() {
   //   this.connectWallet()
@@ -52,6 +58,8 @@ class App extends Component {
   //   console.log('Magic casted:', result);
   // }
 
+
+
   constructor(props) {
     super(props)
     this.state = { account: '' }
@@ -65,7 +73,7 @@ class App extends Component {
           <hr />
           <Routes>
             <Route exact path="/" element={<HomePage/>}/>
-            <Route exact path="/add" element={<AddPage/>}/>
+            <Route exact path="/add" element={<AddPage addFunction={addNewPart}/>}/>
             <Route exact path="/history" element={<HistoryPage/>}/>
             <Route exact path="/about" element={<AboutPage/>}/>
             <Route path='*' element={<ErrorPage/>}/>

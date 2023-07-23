@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function AddShipForm ({text, addFunction}) {
+function AddRecordForm ({text, addFunction}) {
   const [name, setName] = useState();
 
   const [show, setShow] = useState(false);
@@ -23,7 +23,7 @@ function AddShipForm ({text, addFunction}) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add ship</Modal.Title>
+          <Modal.Title>Add record</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form
@@ -60,4 +60,4 @@ function AddShipForm ({text, addFunction}) {
   );
 }
 
-export default AddShipForm;
+export default AddRecordForm;

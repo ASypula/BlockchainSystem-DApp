@@ -1,34 +1,19 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import AddShipForm from '../components/AddShipForm';
-import AddButton from '../components/AddButton'
+import AddPartForm from '../components/AddPartForm';
+import AddRecordForm from '../components/AddRecordForm';
  
-const AddPage = () => {
-
-    const [isShown, setIsShown] = useState(false);
-    const handleClick = event => {
-        // 👇️ toggle shown state
-        setIsShown(current => !current);
-      };
+const AddPage = ({addFunction}) => {
 
     return (
         <div className="page">
 
-
-            <button onClick={handleClick}>Click</button>
-            {/* 👇️ show elements on click */}
-            {isShown && (
-            <div>
-                <AddShipForm/>
-            </div>
-            )}
-
-
-
             <h1 className='title'>ADD</h1>
+
             <div class="btn-group-vertical">
-                <AddButton text="Add ship" />
-                <AddButton text="Add part" />
-                <AddButton text="Add record" />
+                <AddShipForm text="Add ship" addFunction={addFunction}/>
+                <AddPartForm text="Add part" addFunction={addFunction} />
+                <AddRecordForm text="Add record" addFunction={addFunction}/>
             </div>
         </div>
     );
