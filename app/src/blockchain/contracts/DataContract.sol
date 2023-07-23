@@ -7,30 +7,30 @@ contract DataContract {
     string descr;
   }
 
-  // list of ship names and part names?
+  string[] public shipNames;
 
-  string public namee;
+  function addShip(string memory name) public {
+    shipNames.push(name);
+  }
 
-  mapping(string=>mapping(string=>ActionEntry[])) public shipsData;
-  ActionEntry[] entries;
+  function getShipName(uint idx) public view returns (string memory) {
+    return shipNames[idx];
+  }
 
-  function addEntry(string memory ship, string memory part, string memory descr, uint date) public returns(string memory){
+  // mapping(string=>mapping(string=>ActionEntry[])) public shipsData;
+  // ActionEntry[] entries;
+
+  // function addEntry(string memory ship, string memory part, string memory descr, uint date) public returns(string memory){
       
-    ActionEntry memory newEntry = ActionEntry(date, descr);
-    shipsData[ship][part].push(newEntry);
+  //   ActionEntry memory newEntry = ActionEntry(date, descr);
+  //   shipsData[ship][part].push(newEntry);
 
-    namee = shipsData[ship][part][0].descr;
+  //   return shipsData[ship][part][0].descr;
+  // }
 
-    return shipsData[ship][part][0].descr;
-  }
-
-  function getEntry(string memory ship, string memory part) public view returns(string memory){
-    uint lastIdx = shipsData[ship][part].length;
-    return shipsData[ship][part][lastIdx].descr;
-  }
-
-  function foo(string memory name) public returns(string memory){
-    return name;
-  }
+  // function getEntry(string memory ship, string memory part) public view returns(string memory){
+  //   uint lastIdx = shipsData[ship][part].length;
+  //   return shipsData[ship][part][lastIdx].descr;
+  // }
 
 }
