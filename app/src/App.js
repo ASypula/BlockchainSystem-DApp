@@ -15,7 +15,7 @@ import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
-const contractAddress = '0x49A7b3D782CE92C94B27A44FA00d04f1e809fb19';
+const contractAddress = '0xF2D3107D7D79067D01dCdb9f780Cc9740f71Bda8';
 
 
 function addNewPart(partName){
@@ -59,6 +59,9 @@ class App extends Component {
     console.log('New ship added');
     let result = await contractInstance.methods.getShipName(0).call();
     console.log(result);
+    await contractInstance.methods.addRecord("one", "two", "three").send({ from: accounts[0], gas: 194000});
+    let result2 = await contractInstance.methods.getRecord("one", "two").call();
+    console.log(result2);
   }
 
 
