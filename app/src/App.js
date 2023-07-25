@@ -15,16 +15,10 @@ import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
 
 import global from './globals';
-import { tryContract1 } from './contractCalls';
+import { addShipContract, addPartContract } from './contractCalls';
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
 const contractAddress = '0xfb920e5A1E68476b240d777527Eb60604CC7E195';
-
-
-function addNewPart(partName){
-  console.log("In addNewPart")
-  console.log(partName);
-}
 
 class App extends Component {
 
@@ -54,8 +48,12 @@ class App extends Component {
     }
   }
 
-  async tryContract(name){
-    tryContract1(global.account, global.contract, name);
+  async addShip(name){
+    addShipContract(global.account, global.contract, name);
+  }
+
+  async addPart(shipName, partName){
+    addPartContract(global.account, global.contract, shipName, partName);
   }
 
 
@@ -72,7 +70,7 @@ class App extends Component {
           <hr />
           <Routes>
             <Route exact path="/" element={<HomePage/>}/>
-            <Route exact path="/add" element={<AddPage addFunction={addNewPart} addShip={this.tryContract}/>}/>
+            <Route exact path="/add" element={<AddPage addFunction={this.addShip} addShip={this.addShip} addPart={this.addPart}/>}/>
             <Route exact path="/history" element={<HistoryPage/>}/>
             <Route exact path="/about" element={<AboutPage/>}/>
             <Route path='*' element={<ErrorPage/>}/>
