@@ -5,14 +5,14 @@ contract DataContract {
 
   event Log(string text);
 
-  struct ActionEntry {
+  struct Record {
     uint date;
     string descr;
   }
 
   string[] public shipNames;
   mapping(string=>string[]) partNames;
-  mapping(string=>mapping(string=>ActionEntry[])) public allRecords;
+  mapping(string=>mapping(string=>Record[])) public allRecords;
 
   // SHIP functions
 
@@ -43,11 +43,20 @@ contract DataContract {
   function addRecord(string memory shipName, string memory partName, string memory descr) public {
     //TODO: change date
     //TODO: check If given part and ship exists
-    ActionEntry memory newEntry = ActionEntry(1, descr);
+    Record memory newEntry = Record(1, descr);
     // allRecords[shipName][partName]=new ActionEntry[];
     // partNames[shipName].push(partName);
     allRecords[shipName][partName].push(newEntry);
     emit Log("New record added");
+  }
+
+  function getLatestRecords(string memory ship) public view returns (string[] memory, Record[] memory){
+    Record[] memory latestRecords = new Record[](partNames[ship].length);
+    //TODO: change the latestRecords to getting the last element, not first -> [0]
+    for (uint256 i = 0 ; i < partNames[ship].length ; i++) {
+      latestRecords[i] = allRecords[ship][partNames[ship][i]][0];
+    }
+    return (partNames[ship], latestRecords);
   }
 
   function getRecord(string memory shipName, string memory partName) public view returns (string memory){
