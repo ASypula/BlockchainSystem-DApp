@@ -23,6 +23,7 @@ function ShipsList({value, handleChange}) {
         value={value}     
         onChange={handleChange}
     >
+      <option value="" selected disabled hidden>Choose here</option>
       {ships.map((ship, index) => (
         <option key={index} value={ship}>
           {ship}

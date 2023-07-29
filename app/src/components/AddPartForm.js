@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 
 import ShipsList from './ShipsList';
@@ -17,7 +17,6 @@ function AddPartForm ({text, addFunction}) {
   const [chosenShip, setShip] = useState("");
   const handleChange = (e) => setShip(e.target.value);
   console.log(chosenShip);
-
 
 
   return (

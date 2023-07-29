@@ -3,7 +3,7 @@ import AddShipForm from '../components/AddShipForm';
 import AddPartForm from '../components/AddPartForm';
 import AddRecordForm from '../components/AddRecordForm';
  
-const AddPage = ({addShip, addPart, addFunction}) => {
+const AddPage = ({addShip, addPart, addRecord}) => {
 
     return (
         <div className="page">
@@ -13,7 +13,7 @@ const AddPage = ({addShip, addPart, addFunction}) => {
             <div className="btn-group-vertical">
                 <AddShipForm text="Add ship" addFunction={addShip}/>
                 <AddPartForm text="Add part" addFunction={addPart} />
-                <AddRecordForm text="Add record" addFunction={addFunction}/>
+                <AddRecordForm text="Add record" addFunction={addRecord}/>
             </div>
         </div>
     );

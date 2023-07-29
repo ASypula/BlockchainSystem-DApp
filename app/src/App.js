@@ -15,10 +15,10 @@ import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
 
 import global from './globals';
-import { addShipContract, addPartContract } from './contractCalls';
+import { addShipContract, addPartContract, addRecordContract } from './contractCalls';
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
-const contractAddress = '0xfb920e5A1E68476b240d777527Eb60604CC7E195';
+const contractAddress = '0x1b353a4BcfAbe2AA3cBd3E36e823aeBB3B8B8055';
 
 class App extends Component {
 
@@ -56,6 +56,10 @@ class App extends Component {
     addPartContract(global.account, global.contract, shipName, partName);
   }
 
+  async addRecord(shipName, partName, recordName){
+    addRecordContract(global.account, global.contract, shipName, partName, recordName);
+  }
+
 
   constructor(props) {
     super(props)
@@ -70,7 +74,7 @@ class App extends Component {
           <hr />
           <Routes>
             <Route exact path="/" element={<HomePage/>}/>
-            <Route exact path="/add" element={<AddPage addFunction={this.addShip} addShip={this.addShip} addPart={this.addPart}/>}/>
+            <Route exact path="/add" element={<AddPage addShip={this.addShip} addPart={this.addPart} addRecord={this.addRecord}/>}/>
             <Route exact path="/history" element={<HistoryPage/>}/>
             <Route exact path="/about" element={<AboutPage/>}/>
             <Route path='*' element={<ErrorPage/>}/>

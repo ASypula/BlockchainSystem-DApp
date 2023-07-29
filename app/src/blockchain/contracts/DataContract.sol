@@ -28,9 +28,17 @@ contract DataContract {
     return shipNames;
   }
 
+  // PART functions
+
   function addPart(string memory shipName, string memory partName) public {
     partNames[shipName].push(partName);
   }
+
+  function getAllShipParts(string memory shipName) public view returns (string[] memory){
+    return partNames[shipName];
+  }
+
+  // RECORD functions
 
   function addRecord(string memory shipName, string memory partName, string memory descr) public {
     //TODO: change date
@@ -45,21 +53,5 @@ contract DataContract {
   function getRecord(string memory shipName, string memory partName) public view returns (string memory){
     return allRecords[shipName][partName][0].descr;
   }
-
-  // 
-  // ActionEntry[] entries;
-
-  // function addEntry(string memory ship, string memory part, string memory descr, uint date) public returns(string memory){
-      
-  //   ActionEntry memory newEntry = ActionEntry(date, descr);
-  //   shipsData[ship][part].push(newEntry);
-
-  //   return shipsData[ship][part][0].descr;
-  // }
-
-  // function getEntry(string memory ship, string memory part) public view returns(string memory){
-  //   uint lastIdx = shipsData[ship][part].length;
-  //   return shipsData[ship][part][lastIdx].descr;
-  // }
 
 }

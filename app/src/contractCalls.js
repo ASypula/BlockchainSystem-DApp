@@ -25,3 +25,8 @@ export async function getShipNames(contract){
     let names = await contract.methods.getAllShips().call();
     return names
 }
+
+export async function getShipPartNames(contract, shipName){
+    let names = await contract.methods.getAllShipParts(shipName).call();
+    return names
+}

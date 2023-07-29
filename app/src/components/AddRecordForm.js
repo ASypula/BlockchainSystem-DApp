@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 
+import ShipsList from './ShipsList';
+import PartsList from './PartsList';
+
 function AddRecordForm ({text, addFunction}) {
   const [name, setName] = useState();
 
@@ -8,6 +11,13 @@ function AddRecordForm ({text, addFunction}) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [chosenShip, setShip] = useState("");
+  const handleChangeShip = (e) => setShip(e.target.value);
+
+  const [chosenPart, setPart] = useState("");
+  const handleChangePart = (e) => setPart(e.target.value);
+  console.log(chosenPart);
 
   return (
     <>
@@ -29,12 +39,26 @@ function AddRecordForm ({text, addFunction}) {
                         onSubmit={(e) => {
                             handleClose();
                             e.preventDefault();
-                            addFunction(name);
+                            addFunction(chosenShip, chosenPart, name);
                         }}
                         id="editmodal"
                     >
               <label>
-                Name:
+                Ship:
+              </label>
+              <div>
+                <ShipsList value={chosenShip} handleChange={handleChangeShip} />
+              </div>
+
+              <label>
+                Part:
+              </label>
+              <div>
+                <PartsList value={chosenPart} handleChange={handleChangePart} ship={chosenShip}/>
+              </div>
+
+              <label>
+                New record:
               </label>
               <input type="text" id="name"
                           onChange={(e) => {
