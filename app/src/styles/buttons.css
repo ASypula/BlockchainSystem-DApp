@@ -1,20 +1,21 @@
 .Button {
-    cursor: pointer;
-    border-radius: 20px;
-    border-width: 0;
-    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px 12px;
-    text-align: center;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    white-space: nowrap;
+  cursor: pointer;
+  border-radius: 20px;
+  border-width: 0;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 12px;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
 }
 
-button.Add{
+button.Add {
   margin: 10px;
   color: #333333;
   display: inline-block;
@@ -24,13 +25,13 @@ button.Add{
   transition: all 200ms;
 }
 
-button.Close{
+button.Close {
   margin: 10px;
   color: #8a1919;
   background-color: rgba(17, 17, 17, 0.5);
 }
 
-button.Update{
+button.Update {
   margin: 10px;
   color: #0a8f41;
   background-color: rgba(17, 17, 17, 0.5);

@@ -8,7 +8,7 @@ class Logger {
 
     this.error = console.error.bind(console);
 
-    if (level === 'error') {
+    if (level === "error") {
       this.warn = LOG_LEV;
       this.log = LOG_LEV;
       return;
@@ -16,7 +16,7 @@ class Logger {
 
     this.warn = console.warn.bind(console);
 
-    if (level === 'warn') {
+    if (level === "warn") {
       this.log = LOG_LEV;
       return;
     }
@@ -24,5 +24,5 @@ class Logger {
     this.log = console.log.bind(console);
   }
 }
-  
+
 export default Logger;

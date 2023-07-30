@@ -1,24 +1,24 @@
 .navLink {
-    color: black;
-    margin-right: 30px;
-    text-decoration: none;
-    position: relative;
-  }
-  
+  color: black;
+  margin-right: 30px;
+  text-decoration: none;
+  position: relative;
+}
+
 .menuBar {
-    text-align: right;
-    margin-top: 20px;
+  text-align: right;
+  margin-top: 20px;
 }
 
 .logoName {
-    margin-top: -10px;
-    position: absolute;
-    text-align: left;
-    white-space: nowrap;
+  margin-top: -10px;
+  position: absolute;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .mainName {
-    font-size: x-large;
-    display: inline;
-    white-space: nowrap;
+  font-size: x-large;
+  display: inline;
+  white-space: nowrap;
 }

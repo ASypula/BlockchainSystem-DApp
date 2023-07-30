@@ -1,4 +1,4 @@
 export default {
-    account: "",
-    contract: ""
+  account: "",
+  contract: "",
 };

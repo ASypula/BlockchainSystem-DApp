@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import ErrorModal from './ErrorModal';
-import ShipsList from './ShipsList';
-import Logger from '../Logger';
+import { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import ErrorModal from "./ErrorModal";
+import ShipsList from "./ShipsList";
+import Logger from "../Logger";
 
 const logger = new Logger();
 
-function AddPartForm ({text, addFunction}) {
-
+function AddPartForm({ text, addFunction }) {
   const [name, setName] = useState();
 
   const [show, setShow] = useState(false);
@@ -23,21 +22,19 @@ function AddPartForm ({text, addFunction}) {
   const [chosenShip, setShip] = useState("");
   const handleChange = (e) => setShip(e.target.value);
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  handleClose();
-  try{
-    await addFunction(chosenShip, name);
-    logger.log(`New part ${name} added to ship ${chosenShip} to blockchain.`);
-    // const result = await addFunction(name).catch(err=>console.log(err));
-  }
-  catch (err) {
-    setShowError(true);
-    setErrorMsg("Not possible to add this part name.");
-    console.error("Error in adding part");
-  } 
-};
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    handleClose();
+    try {
+      await addFunction(chosenShip, name);
+      logger.log(`New part ${name} added to ship ${chosenShip} to blockchain.`);
+      // const result = await addFunction(name).catch(err=>console.log(err));
+    } catch (err) {
+      setShowError(true);
+      setErrorMsg("Not possible to add this part name.");
+      console.error("Error in adding part");
+    }
+  };
 
   return (
     <>
@@ -55,41 +52,38 @@ const handleSubmit = async (e) => {
           <Modal.Title>Add ship's part</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form
-                        onSubmit={handleSubmit}
-                        id="editmodal"
-                    >
-              <label>
-                Ship:
-              </label>
-              <div>
-                <ShipsList value={chosenShip} handleChange={handleChange} />
-              </div>
+          <form onSubmit={handleSubmit} id="editmodal">
+            <label>Ship:</label>
+            <div>
+              <ShipsList value={chosenShip} handleChange={handleChange} />
+            </div>
 
-
-              <label>
-                New part:
-              </label>
-              <input type="text" id="name"
-                          onChange={(e) => {
-                            setName(e.target.value);
-                        }} />
-                
+            <label>New part:</label>
+            <input
+              type="text"
+              id="name"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button className='Button Close' onClick={handleClose}>
+          <button className="Button Close" onClick={handleClose}>
             Close
           </button>
-          <button
-              className="Button Update"
-              form="editmodal"
-          >
-              Update
+          <button className="Button Update" form="editmodal">
+            Update
           </button>
         </Modal.Footer>
       </Modal>
-      {<ErrorModal showError={showError} setShowError={setShowError} errorMessage={errorMsg} />}
+      {
+        <ErrorModal
+          showError={showError}
+          setShowError={setShowError}
+          errorMessage={errorMsg}
+        />
+      }
     </>
   );
 }

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getShipNames } from '../contractCalls';
-import global from '../globals';
+import React, { useState, useEffect } from "react";
+import { getShipNames } from "../contractCalls";
+import global from "../globals";
 
-function ShipsList({value, handleChange}) {
+function ShipsList({ value, handleChange }) {
   const [ships, setShips] = useState([]);
 
   useEffect(() => {
@@ -19,10 +19,7 @@ function ShipsList({value, handleChange}) {
   }, []);
 
   return (
-    <select 
-        value={value}     
-        onChange={handleChange}
-    >
+    <select value={value} onChange={handleChange}>
       {ships.map((ship, index) => (
         <option key={index} value={ship}>
           {ship}

@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { GiShipWheel } from 'react-icons/gi';
+import { GiShipWheel } from "react-icons/gi";
 
-function Header({name}) {
+function Header({ name }) {
   return (
-    <div className='menuBar'>
+    <div className="menuBar">
       <div className="logoName">
-          <GiShipWheel size={50}/>
-          <div className="mainName">
-            <strong> {name} </strong>
-          </div>
+        <GiShipWheel size={50} />
+        <div className="mainName">
+          <strong> {name} </strong>
+        </div>
       </div>
       <nav>
         <NavLink className="navLink" to="/">
