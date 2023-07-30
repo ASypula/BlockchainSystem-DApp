@@ -17,6 +17,7 @@ contract DataContract {
   // SHIP functions
 
   function addShip(string memory name) public {
+    require(!contains(shipNames, name), "Error: Given ship already in the database.");
     shipNames.push(name);
   }
 
@@ -61,6 +62,19 @@ contract DataContract {
 
   function getRecord(string memory shipName, string memory partName) public view returns (string memory){
     return allRecords[shipName][partName][0].descr;
+  }
+
+  function areSimilarStrings(string memory a, string memory b) private pure  returns (bool) {
+    return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
+}
+
+  function contains(string[] memory arrayToCheck, string memory value) private pure returns (bool){
+    for (uint256 i=0; i<arrayToCheck.length; i++){
+      if (areSimilarStrings(arrayToCheck[i], value)){
+        return true;
+      }
+    }
+    return false;
   }
 
 }

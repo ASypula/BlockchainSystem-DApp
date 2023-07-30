@@ -1,13 +1,38 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import ErrorModal from './ErrorModal';
+import Logger from '../Logger';
+
+const logger = new Logger();
 
 function AddShipForm ({text, addFunction}) {
+  // name of the ship
   const [name, setName] = useState();
-
+  // is the modal form visible
   const [show, setShow] = useState(false);
+
+  //error msg
+  const [errorMsg, setErrorMsg] = useState("");
+  // is the error modal displayed
+  const [showError, setShowError] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    handleClose();
+    try{
+      await addFunction(name);
+      logger.log(`New ship ${name} added to blockchain.`); 
+      // const result = await addFunction(name).catch(err=>console.log(err));
+    }
+    catch (err) {
+      setShowError(true);
+      setErrorMsg("Not possible to add this ship name.");
+      console.error("Error in adding ship");
+    } 
+  };
 
   return (
     <>
@@ -26,11 +51,7 @@ function AddShipForm ({text, addFunction}) {
         </Modal.Header>
         <Modal.Body>
           <form
-                        onSubmit={(e) => {
-                            handleClose();
-                            e.preventDefault();
-                            addFunction(name);
-                        }}
+                        onSubmit={handleSubmit}
                         id="editmodal"
                     >
               <label>
@@ -55,6 +76,7 @@ function AddShipForm ({text, addFunction}) {
           </button>
         </Modal.Footer>
       </Modal>
+      {<ErrorModal showError={showError} setShowError={setShowError} errorMessage={errorMsg} />}
     </>
   );
 }

@@ -17,8 +17,9 @@ import Header from './components/Header';
 import global from './globals';
 import { addShipContract, addPartContract, addRecordContract } from './contractCalls';
 
+
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
-const contractAddress = '0x1b353a4BcfAbe2AA3cBd3E36e823aeBB3B8B8055';
+const contractAddress = '0x5677AD2469D8Be0D744118c66184eC630F3a374D';
 
 class App extends Component {
 
@@ -48,8 +49,8 @@ class App extends Component {
     }
   }
 
-  async addShip(name){
-    addShipContract(global.account, global.contract, name);
+  async addShip(shipName){
+    return addShipContract(global.account, global.contract, shipName);
   }
 
   async addPart(shipName, partName){

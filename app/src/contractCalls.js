@@ -2,13 +2,8 @@ import Logger from "./Logger";
 
 const logger = new Logger();
 
-export async function addShipContract(account, contract, name){
-    await contract.methods.addShip(name).send({ from: account });
-    logger.log(`New ship ${name} added to blockchain.`);
-
-    // await contract.methods.addRecord("one", "two", "three").send({ from: account, gas: 194000});
-    // let result2 = await contract.methods.getRecord("one", "two").call();
-    // console.log(result2);
+export async function addShipContract(account, contract, name) {
+    return contract.methods.addShip(name).send({ from: account });
 }
 
 export async function addPartContract(account, contract, shipName, partName){
@@ -29,4 +24,12 @@ export async function getShipNames(contract){
 export async function getShipPartNames(contract, shipName){
     let names = await contract.methods.getAllShipParts(shipName).call();
     return names
+}
+
+//TODO: when const and when let for returned values
+export async function getLastRecords(contract, shipName) {
+    const result = await contract.methods.getLatestRecords(shipName).call();
+    const partNames = result[0]; 
+    const latestRecords = result[1]; 
+    return [partNames, latestRecords];
 }
