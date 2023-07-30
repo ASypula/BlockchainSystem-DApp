@@ -23,8 +23,9 @@ function PartsList({value, handleChange, ship}) {
     <select 
         value={value}     
         onChange={handleChange}
+        defaultValue={"placeholder"}
     >
-      <option value="" selected disabled hidden>Choose here</option>
+      <option disabled value={"placeholder"}>Select </option>
       {parts.map((part, index) => (
         <option key={index} value={part}>
           {part}

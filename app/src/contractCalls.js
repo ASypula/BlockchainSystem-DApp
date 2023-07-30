@@ -7,13 +7,12 @@ export async function addShipContract(account, contract, name) {
 }
 
 export async function addPartContract(account, contract, shipName, partName){
-    await contract.methods.addPart(shipName, partName).send({ from: account });
-    logger.log(`New part ${partName} added to ship ${shipName} to blockchain.`);
+    return contract.methods.addPart(shipName, partName).send({ from: account });
 }
 
-export async function addRecordContract(account, contract, shipName, partName, record){
-    await contract.methods.addRecord(shipName, partName, record).send({ from: account, gas: 194000 });
-    logger.log(`New record ${record} added to part ${partName} in ship ${shipName} to blockchain.`);
+export async function addRecordContract(account, contract, shipName, partName, date, descr){
+    await contract.methods.addRecord(shipName, partName,  date, descr).send({ from: account, gas: 194000 });
+    logger.log(`New record added to part ${partName} in ship ${shipName} to blockchain.`);
 }
 
 export async function getShipNames(contract){

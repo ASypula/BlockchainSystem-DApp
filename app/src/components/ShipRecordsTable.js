@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {getLastRecords} from "../contractCalls"
+import {dateFromContract} from '../utils';
 import global from '../globals';
 
-const shipDetails = ['Part', 'Action', 'Update', 'Description']
+const shipDetails = ['Part', 'Date', 'Description']
 
 function ShipRecordsTable ({shipName}) {
     console.log(shipName);
@@ -15,8 +16,6 @@ function ShipRecordsTable ({shipName}) {
         try {
           let [parts, latestRecords] = await getLastRecords(global.contract, shipName);
           console.log("In records fetching")
-          console.log(partNames);
-          console.log(typeof latestRecords[0].descr);
           setPartNames(parts);
           setRecords(latestRecords);
         } catch (error) {
@@ -40,8 +39,7 @@ function ShipRecordsTable ({shipName}) {
                     return (
                         <tr key={index}>
                             <td>{partName}</td>
-                            <td>{recentRecords[index].descr}</td>
-                            <td>{recentRecords[index].descr}</td>
+                            <td>{dateFromContract(recentRecords[index].date)}</td>
                             <td>{recentRecords[index].descr}</td>
                         </tr>
                     )

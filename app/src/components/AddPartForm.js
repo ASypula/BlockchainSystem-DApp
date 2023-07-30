@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-
+import ErrorModal from './ErrorModal';
 import ShipsList from './ShipsList';
+import Logger from '../Logger';
 
+const logger = new Logger();
 
 function AddPartForm ({text, addFunction}) {
 
@@ -13,10 +15,28 @@ function AddPartForm ({text, addFunction}) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // error msg
+  const [errorMsg, setErrorMsg] = useState("");
+  // is the error modal displayed
+  const [showError, setShowError] = useState(false);
 
   const [chosenShip, setShip] = useState("");
   const handleChange = (e) => setShip(e.target.value);
-  console.log(chosenShip);
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  handleClose();
+  try{
+    await addFunction(chosenShip, name);
+    logger.log(`New part ${name} added to ship ${chosenShip} to blockchain.`);
+    // const result = await addFunction(name).catch(err=>console.log(err));
+  }
+  catch (err) {
+    setShowError(true);
+    setErrorMsg("Not possible to add this part name.");
+    console.error("Error in adding part");
+  } 
+};
 
 
   return (
@@ -36,12 +56,7 @@ function AddPartForm ({text, addFunction}) {
         </Modal.Header>
         <Modal.Body>
           <form
-                        onSubmit={(e) => {
-                            handleClose();
-                            e.preventDefault();
-                            addFunction(chosenShip, name);
-    
-                        }}
+                        onSubmit={handleSubmit}
                         id="editmodal"
                     >
               <label>
@@ -74,6 +89,7 @@ function AddPartForm ({text, addFunction}) {
           </button>
         </Modal.Footer>
       </Modal>
+      {<ErrorModal showError={showError} setShowError={setShowError} errorMessage={errorMsg} />}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import ErrorModal from './ErrorModal';
+import InfoModal from './InfoModal';
 import Logger from '../Logger';
 
 const logger = new Logger();
@@ -16,6 +17,11 @@ function AddShipForm ({text, addFunction}) {
   // is the error modal displayed
   const [showError, setShowError] = useState(false);
 
+  //info msg
+  const [infoMsg, setInfoMsg] = useState("");
+  // is the info modal displayed
+  const [showInfo, setShowInfo] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -24,6 +30,8 @@ function AddShipForm ({text, addFunction}) {
     handleClose();
     try{
       await addFunction(name);
+      setShowInfo(true);
+      setInfoMsg(`Ship ${name} added successfully.`);
       logger.log(`New ship ${name} added to blockchain.`); 
       // const result = await addFunction(name).catch(err=>console.log(err));
     }
@@ -77,6 +85,7 @@ function AddShipForm ({text, addFunction}) {
         </Modal.Footer>
       </Modal>
       {<ErrorModal showError={showError} setShowError={setShowError} errorMessage={errorMsg} />}
+      {<InfoModal showInfo={showInfo} setShowInfo={setShowInfo} infoMessage={infoMsg} />}
     </>
   );
 }

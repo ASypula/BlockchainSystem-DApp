@@ -4,7 +4,7 @@ import './styles/buttons.css';
 import './styles/header.css';
 import './styles/page.css';
 import Web3 from 'web3';
-import contractABI from './blockchain/build/contracts/s1.json';
+import contractABI from './blockchain/build/contracts/abi.json';
 
 import AboutPage from './pages/AboutPage';
 import AddPage from './pages/AddPage';
@@ -19,7 +19,7 @@ import { addShipContract, addPartContract, addRecordContract } from './contractC
 
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545")
-const contractAddress = '0x5677AD2469D8Be0D744118c66184eC630F3a374D';
+const contractAddress = '0xaFDCbcB8a4a36BdbEEe2D53283c0e03cE7E7ddC5';
 
 class App extends Component {
 
@@ -54,11 +54,11 @@ class App extends Component {
   }
 
   async addPart(shipName, partName){
-    addPartContract(global.account, global.contract, shipName, partName);
+    return addPartContract(global.account, global.contract, shipName, partName);
   }
 
-  async addRecord(shipName, partName, recordName){
-    addRecordContract(global.account, global.contract, shipName, partName, recordName);
+  async addRecord(shipName, partName, date, descr){
+    addRecordContract(global.account, global.contract, shipName, partName, date, descr);
   }
 
 

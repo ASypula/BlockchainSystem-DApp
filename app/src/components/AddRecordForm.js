@@ -3,9 +3,11 @@ import Modal from 'react-bootstrap/Modal';
 
 import ShipsList from './ShipsList';
 import PartsList from './PartsList';
+import {dateToContract} from '../utils';
 
 function AddRecordForm ({text, addFunction}) {
-  const [name, setName] = useState();
+  const [date, setDate] = useState();
+  const [descr, setDescr] = useState();
 
   const [show, setShow] = useState(false);
 
@@ -17,7 +19,9 @@ function AddRecordForm ({text, addFunction}) {
 
   const [chosenPart, setPart] = useState("");
   const handleChangePart = (e) => setPart(e.target.value);
-  console.log(chosenPart);
+
+  console.log(date);
+  console.log(descr);
 
   return (
     <>
@@ -39,7 +43,7 @@ function AddRecordForm ({text, addFunction}) {
                         onSubmit={(e) => {
                             handleClose();
                             e.preventDefault();
-                            addFunction(chosenShip, chosenPart, name);
+                            addFunction(chosenShip, chosenPart, date, descr);
                         }}
                         id="editmodal"
                     >
@@ -60,9 +64,13 @@ function AddRecordForm ({text, addFunction}) {
               <label>
                 New record:
               </label>
-              <input type="text" id="name"
+              <input type="date" id="date"
                           onChange={(e) => {
-                            setName(e.target.value);
+                            setDate(dateToContract(e.target.value));
+                        }} />
+              <input type="text" id="descr"
+                          onChange={(e) => {
+                            setDescr(e.target.value);
                         }} />
                 
           </form>

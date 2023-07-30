@@ -4,6 +4,7 @@ pragma abicoder v2;
 contract DataContract {
 
   event Log(string text);
+  event Debug(string element, string value);
 
   struct Record {
     uint date;
@@ -17,7 +18,7 @@ contract DataContract {
   // SHIP functions
 
   function addShip(string memory name) public {
-    require(!contains(shipNames, name), "Error: Given ship already in the database.");
+    require(!contains(shipNames, name), "Error: Ship with provided name already exists.");
     shipNames.push(name);
   }
 
@@ -32,6 +33,7 @@ contract DataContract {
   // PART functions
 
   function addPart(string memory shipName, string memory partName) public {
+    require(!contains(partNames[shipName], partName), "Error: Part with provided name already exists for this ship.");
     partNames[shipName].push(partName);
   }
 
@@ -41,21 +43,20 @@ contract DataContract {
 
   // RECORD functions
 
-  function addRecord(string memory shipName, string memory partName, string memory descr) public {
+  function addRecord(string memory shipName, string memory partName, uint date, string memory descr) public {
     //TODO: change date
-    //TODO: check If given part and ship exists
-    Record memory newEntry = Record(1, descr);
-    // allRecords[shipName][partName]=new ActionEntry[];
-    // partNames[shipName].push(partName);
+    require(contains(partNames[shipName], partName), "Error: Part for given ship does not exist.");
+    Record memory newEntry = Record(date, descr);
     allRecords[shipName][partName].push(newEntry);
     emit Log("New record added");
   }
 
   function getLatestRecords(string memory ship) public view returns (string[] memory, Record[] memory){
     Record[] memory latestRecords = new Record[](partNames[ship].length);
-    //TODO: change the latestRecords to getting the last element, not first -> [0]
+    // For each part in the ship get the latest record (the last in the array)
     for (uint256 i = 0 ; i < partNames[ship].length ; i++) {
-      latestRecords[i] = allRecords[ship][partNames[ship][i]][0];
+      uint256 lastIdx = allRecords[ship][partNames[ship][i]].length - 1;
+      latestRecords[i] = allRecords[ship][partNames[ship][i]][lastIdx];
     }
     return (partNames[ship], latestRecords);
   }
