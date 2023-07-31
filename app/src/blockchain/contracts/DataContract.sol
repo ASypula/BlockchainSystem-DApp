@@ -44,7 +44,6 @@ contract DataContract {
   // RECORD functions
 
   function addRecord(string memory shipName, string memory partName, uint date, string memory descr) public {
-    //TODO: change date
     require(contains(partNames[shipName], partName), "Error: Part for given ship does not exist.");
     Record memory newEntry = Record(date, descr);
     allRecords[shipName][partName].push(newEntry);

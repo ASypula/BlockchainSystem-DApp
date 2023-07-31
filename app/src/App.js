@@ -93,26 +93,20 @@ class App extends Component {
           <Routes>
             <Route
               path="/"
-              element={this.isAuthenticated ? <HomePage /> : <LoginPage />}
+              // element={this.isAuthenticated ? <HomePage /> : <LoginPage />}
+              element={<HomePage />}
             />
             <Route
               path="/add"
               element={
-                this.isAuthenticated ? (
-                  <AddPage
-                    addShip={this.addShip}
-                    addPart={this.addPart}
-                    addRecord={this.addRecord}
-                  />
-                ) : (
-                  <LoginPage />
-                )
+                <AddPage
+                  addShip={this.addShip}
+                  addPart={this.addPart}
+                  addRecord={this.addRecord}
+                />
               }
             />
-            <Route
-              path="/history"
-              element={this.isAuthenticated ? <HistoryPage /> : <LoginPage />}
-            />
+            <Route path="/history" element={<HistoryPage />} />
             <Route exact path="/about" element={<AboutPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
