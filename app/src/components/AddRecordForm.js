@@ -46,35 +46,41 @@ function AddRecordForm({ text, addFunction }) {
             }}
             id="editmodal"
           >
-            <label>Ship:</label>
-            <div>
+            <div className="blockInput">
+              <label>Ship</label>
               <ShipsList value={chosenShip} handleChange={handleChangeShip} />
             </div>
-
-            <label>Part:</label>
-            <div>
+            <div></div>
+            <div className="blockInput">
+              <label>Part</label>
               <PartsList
                 value={chosenPart}
                 handleChange={handleChangePart}
                 ship={chosenShip}
               />
             </div>
-
-            <label>New record:</label>
-            <input
-              type="date"
-              id="date"
-              onChange={(e) => {
-                setDate(dateToContract(e.target.value));
-              }}
-            />
-            <input
-              type="text"
-              id="descr"
-              onChange={(e) => {
-                setDescr(e.target.value);
-              }}
-            />
+            <div></div>
+            <p>New record CORRECT STYLING</p>
+            <div className="blockInput">
+              <label>Date</label>
+              <input
+                type="date"
+                id="date"
+                onChange={(e) => {
+                  setDate(dateToContract(e.target.value));
+                }}
+              />
+            </div>
+            <div className="blockInput">
+              <label>Description</label>
+              <input
+                type="text"
+                id="descr"
+                onChange={(e) => {
+                  setDescr(e.target.value);
+                }}
+              />
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>

@@ -56,19 +56,20 @@ function AddPartForm({ text, addFunction }) {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleSubmit} id="editmodal">
-            <label>Ship:</label>
-            <div>
+            <div className="blockInput">
+              <label>Ship</label>
               <ShipsList value={chosenShip} handleChange={handleChange} />
             </div>
-
-            <label>New part:</label>
-            <input
-              type="text"
-              id="name"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
+            <div className="blockInput">
+              <label>New part</label>
+              <input
+                type="text"
+                id="name"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./styles/buttons.css";
 import "./styles/header.css";
 import "./styles/page.css";
+import "./styles/components.css";
 import Web3 from "web3";
 import contractABI from "./blockchain/build/contracts/abi.json";
 

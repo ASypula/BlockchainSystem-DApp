@@ -2,11 +2,24 @@
   text-align: center;
 }
 
-.recordsTable {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .title {
   color: rgb(65, 92, 165);
+  font-family: "Trocchi", serif;
+  font-size: 45px;
+  font-weight: normal;
+  line-height: 48px;
+  margin: 0;
+}
+
+label {
+  color: rgb(65, 92, 165);
+  font-family: "Trocchi", serif;
+  font-weight: normal;
+  margin: 0;
+  font-size: 25px;
+  width: 140px;
+}
+
+.blockInput {
+  display: inline-block;
 }
