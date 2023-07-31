@@ -10,6 +10,7 @@ contract DataContract {
   struct Record {
     uint date;
     string descr;
+    string file;
   }
 
   string[] public shipNames;
@@ -48,10 +49,10 @@ contract DataContract {
 
   // RECORD functions
 
-  function addRecord(string memory shipName, string memory partName, uint date, string memory descr) public {
+  function addRecord(string memory shipName, string memory partName, uint date, string memory descr, string memory file) public {
     emit Log("In Add Record");
     require(contains(partNames[shipName], partName), "Error: Part for given ship does not exist.");
-    Record memory newEntry = Record(date, descr);
+    Record memory newEntry = Record(date, descr, file);
     allRecords[shipName][partName].push(newEntry);
     emit Log("New record added");
   }
@@ -70,13 +71,9 @@ contract DataContract {
     return (partNames[ship], latestRecords);
   }
 
-  function getRecord(string memory shipName, string memory partName) public view returns (string memory){
-    return allRecords[shipName][partName][0].descr;
-  }
-
   function areSimilarStrings(string memory a, string memory b) private pure  returns (bool) {
     return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
-}
+  }
 
   function contains(string[] memory arrayToCheck, string memory value) private pure returns (bool){
     for (uint256 i=0; i<arrayToCheck.length; i++){

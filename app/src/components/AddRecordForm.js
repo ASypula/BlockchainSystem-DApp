@@ -23,6 +23,24 @@ function AddRecordForm({ text, addFunction }) {
   const [chosenPart, setPart] = useState("");
   const handleChangePart = (e) => setPart(e.target.value);
 
+  // TODO: Check file setup
+  const [fileContent, setFileContent] = useState("");
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const content = event.target.result;
+      setFileContent(content);
+    };
+
+    if (file) {
+      reader.readAsText(file);
+    }
+  };
+
+  // file setup ends
+
   return (
     <>
       <button className="Button Add" onClick={handleShow}>
@@ -42,7 +60,8 @@ function AddRecordForm({ text, addFunction }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              addFunction(chosenShip, chosenPart, date, descr);
+              addFunction(chosenShip, chosenPart, date, descr, fileContent);
+              console.log(fileContent);
             }}
             id="editmodal"
           >
@@ -80,6 +99,10 @@ function AddRecordForm({ text, addFunction }) {
                   setDescr(e.target.value);
                 }}
               />
+            </div>
+            {/* TODO: File upload check */}
+            <div>
+              <input type="file" onChange={handleFileChange} />
             </div>
           </form>
         </Modal.Body>

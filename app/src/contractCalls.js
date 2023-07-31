@@ -16,11 +16,12 @@ export async function addRecordContract(
   shipName,
   partName,
   date,
-  descr
+  descr,
+  file
 ) {
   await contract.methods
-    .addRecord(shipName, partName, date, descr)
-    .send({ from: account, gas: 194000 });
+    .addRecord(shipName, partName, date, descr, file)
+    .send({ from: account, gas: 2094000 });
   logger.log(
     `New record added to part ${partName} in ship ${shipName} to blockchain.`
   );

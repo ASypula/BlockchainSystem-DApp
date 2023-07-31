@@ -23,7 +23,7 @@ import {
 } from "./contractCalls";
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-const contractAddress = "0x86Bc38E122239BF115c35607435794131C8fD7F3";
+const contractAddress = "0xC84e3f7f3B9b14bF4B38db16b3c548A8992F8F1B";
 
 class App extends Component {
   isAuthenticated = false;
@@ -69,14 +69,15 @@ class App extends Component {
     return addPartContract(global.account, global.contract, shipName, partName);
   }
 
-  async addRecord(shipName, partName, date, descr) {
+  async addRecord(shipName, partName, date, descr, file) {
     addRecordContract(
       global.account,
       global.contract,
       shipName,
       partName,
       date,
-      descr
+      descr,
+      file
     );
   }
 
