@@ -9,7 +9,6 @@ function PartsList({ value, handleChange, ship }) {
     const fetchParts = async () => {
       try {
         let partNames = await getShipPartNames(global.contract, ship);
-        console.log("In parts list");
         setParts(partNames);
       } catch (error) {
         console.error("Error:", error);
@@ -20,9 +19,9 @@ function PartsList({ value, handleChange, ship }) {
   }, [ship]);
 
   return (
-    <select value={value} onChange={handleChange} defaultValue={"placeholder"}>
-      <option disabled value={"placeholder"}>
-        Select{" "}
+    <select value={value} onChange={handleChange}>
+      <option disabled value="">
+        Select
       </option>
       {parts.map((part, index) => (
         <option key={index} value={part}>

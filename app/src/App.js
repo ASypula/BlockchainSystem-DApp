@@ -22,7 +22,7 @@ import {
 } from "./contractCalls";
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-const contractAddress = "0xaFDCbcB8a4a36BdbEEe2D53283c0e03cE7E7ddC5";
+const contractAddress = "0x86Bc38E122239BF115c35607435794131C8fD7F3";
 
 class App extends Component {
   isAuthenticated = false;

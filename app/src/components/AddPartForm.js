@@ -11,7 +11,10 @@ function AddPartForm({ text, addFunction }) {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    window.location.reload(false);
+  };
   const handleShow = () => setShow(true);
 
   // error msg
@@ -24,7 +27,6 @@ function AddPartForm({ text, addFunction }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleClose();
     try {
       await addFunction(chosenShip, name);
       logger.log(`New part ${name} added to ship ${chosenShip} to blockchain.`);
@@ -34,6 +36,7 @@ function AddPartForm({ text, addFunction }) {
       setErrorMsg("Not possible to add this part name.");
       console.error("Error in adding part");
     }
+    handleClose();
   };
 
   return (

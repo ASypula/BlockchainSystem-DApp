@@ -20,6 +20,9 @@ function ShipsList({ value, handleChange }) {
 
   return (
     <select value={value} onChange={handleChange}>
+      <option disabled value="">
+        Select
+      </option>
       {ships.map((ship, index) => (
         <option key={index} value={ship}>
           {ship}

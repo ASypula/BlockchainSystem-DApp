@@ -11,7 +11,10 @@ function AddRecordForm({ text, addFunction }) {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    window.location.reload(false);
+  };
   const handleShow = () => setShow(true);
 
   const [chosenShip, setShip] = useState("");
@@ -19,9 +22,6 @@ function AddRecordForm({ text, addFunction }) {
 
   const [chosenPart, setPart] = useState("");
   const handleChangePart = (e) => setPart(e.target.value);
-
-  console.log(date);
-  console.log(descr);
 
   return (
     <>
@@ -41,7 +41,6 @@ function AddRecordForm({ text, addFunction }) {
         <Modal.Body>
           <form
             onSubmit={(e) => {
-              handleClose();
               e.preventDefault();
               addFunction(chosenShip, chosenPart, date, descr);
             }}

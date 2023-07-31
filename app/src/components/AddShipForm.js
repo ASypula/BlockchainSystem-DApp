@@ -27,7 +27,6 @@ function AddShipForm({ text, addFunction }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleClose();
     try {
       await addFunction(name);
       setShowInfo(true);
@@ -39,6 +38,7 @@ function AddShipForm({ text, addFunction }) {
       setErrorMsg("Not possible to add this ship name.");
       console.error("Error in adding ship");
     }
+    handleClose();
   };
 
   return (
