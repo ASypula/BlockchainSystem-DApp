@@ -13,12 +13,23 @@ function AddRecordForm({ text, addFunction }) {
 
   const handleClose = () => {
     setShow(false);
-    window.location.reload(false);
+    resetForm();
+    // setShip("");
   };
   const handleShow = () => setShow(true);
 
+  const resetForm = () => {
+    setPart("");
+    setDate("");
+    setDescr("");
+    setFileContent("");
+  };
+
   const [chosenShip, setShip] = useState("");
-  const handleChangeShip = (e) => setShip(e.target.value);
+  const handleChangeShip = (e) => {
+    setShip(e.target.value);
+    resetForm();
+  };
 
   const [chosenPart, setPart] = useState("");
   const handleChangePart = (e) => setPart(e.target.value);
@@ -62,6 +73,7 @@ function AddRecordForm({ text, addFunction }) {
               e.preventDefault();
               addFunction(chosenShip, chosenPart, date, descr, fileContent);
               console.log(fileContent);
+              handleClose();
             }}
             id="editmodal"
           >

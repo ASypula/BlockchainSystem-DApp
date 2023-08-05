@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./styles/buttons.css";
 import "./styles/header.css";
 import "./styles/page.css";
 import "./styles/components.css";
 import Web3 from "web3";
-import contractABI from "./blockchain/build/contracts/abi.json";
+import dataContractABI from "./blockchain/build/contracts/abi_data.json";
+import accountContractABI from "./blockchain/build/contracts/abi_accounts.json";
 
 import AboutPage from "./pages/AboutPage";
 import AddPage from "./pages/AddPage";
@@ -17,40 +18,63 @@ import Header from "./components/Header";
 
 import global from "./globals";
 import {
+  getPermittedAccounts,
   addShipContract,
   addPartContract,
   addRecordContract,
 } from "./contractCalls";
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-const contractAddress = "0xC84e3f7f3B9b14bF4B38db16b3c548A8992F8F1B";
+const contractAddressData = "0x39D8ddBA129C02953Faa90DC7b48B5Fb4954FE2d";
+const contractAddressAccounts = "0x1E2917399767E0f743888C3064c18c48e051302B";
 
-class App extends Component {
-  isAuthenticated = false;
+const App = () => {
+  const [permittedAccounts, setAccounts] = useState("");
+  const [accountContract, setAccountContract] = useState("");
+  const [tryLogin, setRetryLogin] = useState(true);
 
-  componentDidMount() {
-    this.connectWallet();
-    this.loadBlockchainData();
+  useEffect(() => {
+    console.log(global.isAuthenticated);
+    connectBlockchain();
+    loadBlockchainData().then((result) => loadPermittedAccounts(result));
+  }, [tryLogin]);
+
+  async function loadPermittedAccounts() {
+    getPermittedAccounts(accountContract, global.account)
+      .then((accounts) => {
+        if (accounts) {
+          setAccounts(accounts);
+          authenticate();
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
 
-  async loadBlockchainData() {
+  async function loadBlockchainData() {
     const accounts = await web3.eth.getAccounts();
     global.account = accounts[0];
     const contractInstance = new web3.eth.Contract(
-      contractABI,
-      contractAddress
+      dataContractABI,
+      contractAddressData
+    );
+    const contractAccounts = new web3.eth.Contract(
+      accountContractABI,
+      contractAddressAccounts
     );
     global.contract = contractInstance;
+    setAccountContract(contractAccounts);
+    return accounts[0];
   }
 
-  async connectWallet() {
+  async function connectBlockchain() {
     if (window.ethereum) {
       try {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
         console.log("Connected account:", accounts[0]);
-        this.isAuthenticated = true;
       } catch (error) {
         console.error("User rejected connection request:", error);
       }
@@ -61,15 +85,22 @@ class App extends Component {
     }
   }
 
-  async addShip(shipName) {
+  async function authenticate() {
+    if (permittedAccounts.includes(global.account)) {
+      global.isAuthenticated = true;
+      console.log("Authenticated");
+    }
+  }
+
+  async function addShip(shipName) {
     return addShipContract(global.account, global.contract, shipName);
   }
 
-  async addPart(shipName, partName) {
+  async function addPart(shipName, partName) {
     return addPartContract(global.account, global.contract, shipName, partName);
   }
 
-  async addRecord(shipName, partName, date, descr, file) {
+  async function addRecord(shipName, partName, date, descr, file) {
     addRecordContract(
       global.account,
       global.contract,
@@ -81,30 +112,25 @@ class App extends Component {
     );
   }
 
-  constructor(props) {
-    super(props);
-    this.state = { account: "" };
+  function retryLogin() {
+    setRetryLogin(!tryLogin);
   }
 
-  render() {
+  if (global.isAuthenticated) {
     return (
       <BrowserRouter>
         <div className="bg">
           <Header name="PartsChain" />
           <hr />
           <Routes>
-            <Route
-              path="/"
-              // element={this.isAuthenticated ? <HomePage /> : <LoginPage />}
-              element={<HomePage />}
-            />
+            <Route path="/" element={<HomePage />} />
             <Route
               path="/add"
               element={
                 <AddPage
-                  addShip={this.addShip}
-                  addPart={this.addPart}
-                  addRecord={this.addRecord}
+                  addShip={addShip}
+                  addPart={addPart}
+                  addRecord={addRecord}
                 />
               }
             />
@@ -115,7 +141,17 @@ class App extends Component {
         </div>
       </BrowserRouter>
     );
+  } else {
+    return (
+      <div>
+        <LoginPage />;
+        <button className="Retry" onClick={retryLogin}>
+          {" "}
+          Log in{" "}
+        </button>
+      </div>
+    );
   }
-}
+};
 
 export default App;

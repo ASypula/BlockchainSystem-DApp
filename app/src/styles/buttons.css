@@ -36,3 +36,8 @@ button.Update {
   color: #0a8f41;
   background-color: rgba(17, 17, 17, 0.5);
 }
+
+button.Retry {
+  margin-top: 60px;
+  margin-left: 200px;
+}

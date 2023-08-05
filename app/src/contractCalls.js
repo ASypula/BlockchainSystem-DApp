@@ -2,6 +2,17 @@ import Logger from "./Logger";
 
 const logger = new Logger();
 
+export async function getPermittedAccounts(contract, account) {
+  try {
+    const accounts = await contract.methods
+      .getAllAccounts()
+      .call({ from: account });
+    return accounts;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function addShipContract(account, contract, name) {
   return contract.methods.addShip(name).send({ from: account });
 }

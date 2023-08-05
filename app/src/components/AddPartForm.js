@@ -13,7 +13,8 @@ function AddPartForm({ text, addFunction }) {
 
   const handleClose = () => {
     setShow(false);
-    window.location.reload(false);
+    setName("");
+    setShip("");
   };
   const handleShow = () => setShow(true);
 

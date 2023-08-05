@@ -6,10 +6,18 @@ import global from "../globals";
 
 const HistoryPage = () => {
   const [chosenShip, setShip] = useState("");
-  const handleChangeShip = (e) => setShip(e.target.value);
+  const handleChangeShip = (e) => {
+    setShip(e.target.value);
+    resetForm();
+  };
 
   const [partNames, setPartNames] = useState([]);
   const [recentRecords, setRecords] = useState([]);
+
+  const resetForm = () => {
+    setPartNames([]);
+    setRecords([]);
+  };
 
   useEffect(() => {
     const fetchRecentRecords = async () => {
