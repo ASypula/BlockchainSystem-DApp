@@ -1,7 +1,10 @@
-/** Log levels */
+// Log levels
 const LOG_LEV = (message, ...optionalParams) => {};
 
-/** Logger which outputs to the browser console */
+/**
+ * Custom logger implementation that outputs messages to the console
+ * Allows for defining log level, importance
+ */
 class Logger {
   constructor(options = { level: undefined }) {
     const { level } = options;

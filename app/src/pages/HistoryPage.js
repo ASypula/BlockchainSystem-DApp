@@ -3,8 +3,20 @@ import { getLastRecords } from "../contractCalls";
 import ShipRecordsTable from "../components/ShipRecordsTable";
 import ShipsList from "../components/ShipsList";
 import global from "../globals";
+import Logger from "../Logger";
 
+const logger = new Logger();
+
+/**
+ * Page with all addition options
+ * @param   {function} addShip function to be invoked on adding a new ship
+ * @param   {function} addPart function to be invoked on adding a new part
+ * @param   {function} addRecord function tto be invoked on adding a new record
+ */
 const HistoryPage = () => {
+  logger.log("On History Page");
+
+  // ship for which history will be displayed
   const [chosenShip, setShip] = useState("");
   const handleChangeShip = (e) => {
     setShip(e.target.value);
@@ -28,8 +40,11 @@ const HistoryPage = () => {
         );
         setPartNames(parts);
         setRecords(latestRecords);
+        logger.log(
+          `All history on parts and records for ship ${chosenShip} loaded successfully.`
+        );
       } catch (error) {
-        console.error("Error:", error);
+        logger.error("History data cannot be loaded");
       }
     };
 

@@ -19,7 +19,7 @@ function ShipsList({ value, handleChange }) {
       try {
         let shipNames = await getShipNames(global.contract);
         setShips(shipNames);
-        logger.info("List of ships loaded successfully");
+        logger.log("List of ships loaded successfully");
       } catch (error) {
         logger.error("List of ships cannot be provided.");
         logger.error(error);

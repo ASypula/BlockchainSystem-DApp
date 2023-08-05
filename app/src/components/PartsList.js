@@ -20,7 +20,7 @@ function PartsList({ value, handleChange, ship }) {
       try {
         let partNames = await getShipPartNames(global.contract, ship);
         setParts(partNames);
-        logger.info(`List of parts for ship ${ship} loaded successfully`);
+        logger.log(`List of parts for ship ${ship} loaded successfully`);
       } catch (error) {
         logger.error(`List of parts for ship ${ship} cannot be provided.`);
         logger.error(error);

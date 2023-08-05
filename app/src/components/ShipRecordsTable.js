@@ -19,8 +19,6 @@ function ShipRecordsTable({ parts, records }) {
     return new Blob([records[index].file], { type: "text/plain" });
   };
 
-  //TODO: to be continued with comments and refactor
-
   const downloadFile = (blob, filename) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -35,6 +33,7 @@ function ShipRecordsTable({ parts, records }) {
   const handleDownload = (index) => {
     const blob = generateFile(index);
     downloadFile(blob, "report.txt");
+    logger.log("File downloaded successfully");
   };
 
   return (
