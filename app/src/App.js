@@ -25,16 +25,26 @@ import {
 } from "./contractCalls";
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
+
+// Addresses of contracts already deployed to blockchain
 const contractAddressData = "0x39D8ddBA129C02953Faa90DC7b48B5Fb4954FE2d";
 const contractAddressAccounts = "0x1E2917399767E0f743888C3064c18c48e051302B";
 
+/**
+ * Main component, enables routing and handles user's connection
+ * to blockchain with proper authentication and authorization.
+ */
 const App = () => {
+  // Accounts permitted to access the application
   const [permittedAccounts, setAccounts] = useState("");
+
+  // Contract instance to be used with communication to deployed Account Contract
   const [accountContract, setAccountContract] = useState("");
+
+  // Defines If user wants another log in attempt
   const [tryLogin, setRetryLogin] = useState(true);
 
   useEffect(() => {
-    console.log(global.isAuthenticated);
     connectBlockchain();
     loadBlockchainData().then((result) => loadPermittedAccounts(result));
   }, [tryLogin]);

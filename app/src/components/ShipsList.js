@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { getShipNames } from "../contractCalls";
 import global from "../globals";
+import Logger from "../Logger";
 
+const logger = new Logger();
+
+/**
+ * Dynamically updating list of stored ships
+ * @param   {string} value ship chosen by the user, to be passed to the parent component
+ * @param   {function} handleChange function invoked after choosing a ship
+ * @return  select with all available ships' names as options
+ */
 function ShipsList({ value, handleChange }) {
   const [ships, setShips] = useState([]);
 
@@ -10,8 +19,10 @@ function ShipsList({ value, handleChange }) {
       try {
         let shipNames = await getShipNames(global.contract);
         setShips(shipNames);
+        logger.info("List of ships loaded successfully");
       } catch (error) {
-        console.error(error);
+        logger.error("List of ships cannot be provided.");
+        logger.error(error);
       }
     };
 
