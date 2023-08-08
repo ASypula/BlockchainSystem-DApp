@@ -3,7 +3,7 @@ const LOG_LEV = (message, ...optionalParams) => {};
 
 /**
  * Custom logger implementation that outputs messages to the console
- * Allows for defining log level, importance
+ * Allows for setting desired log level
  */
 class Logger {
   constructor(options = { level: undefined }) {

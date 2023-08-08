@@ -23,12 +23,15 @@ import {
   addPartContract,
   addRecordContract,
 } from "./contractCalls";
+import Logger from "./Logger";
+
+const logger = new Logger();
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
 
 // Addresses of contracts already deployed to blockchain
-const contractAddressData = "0x39D8ddBA129C02953Faa90DC7b48B5Fb4954FE2d";
-const contractAddressAccounts = "0x1E2917399767E0f743888C3064c18c48e051302B";
+const contractAddressData = "0x26006Bf5a3E7917B64A7A8d8C8AF11331E01920E";
+const contractAddressAccounts = "0x61C44DBfcf8885E05C6087df5b38369fc2665871";
 
 /**
  * Main component, enables routing and handles user's connection
@@ -44,6 +47,10 @@ const App = () => {
   // Defines If user wants another log in attempt
   const [tryLogin, setRetryLogin] = useState(true);
 
+  // Title and message displayed on Login Page, depends on the stage of user's authorization
+  const [loginTitle, setLoginTitle] = useState("");
+  const [loginMsg, setLoginMsg] = useState("");
+
   useEffect(() => {
     connectBlockchain();
     loadBlockchainData().then((result) => loadPermittedAccounts(result));
@@ -58,7 +65,7 @@ const App = () => {
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
+        logger.error("Error:", error);
       });
   }
 
@@ -84,12 +91,20 @@ const App = () => {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        console.log("Connected account:", accounts[0]);
+        logger.log("Connected account:", accounts[0]);
       } catch (error) {
-        console.error("User rejected connection request:", error);
+        setLoginTitle("Connection to blockchain has to be established.");
+        setLoginMsg(
+          "Please first connect to your blockchain account and proceed with logging in.\nThen enjoy the PartsChain!"
+        );
+        logger.error("User rejected connection request:", error);
       }
     } else {
-      console.error(
+      setLoginTitle("MetaMask is required to use the system.");
+      setLoginMsg(
+        "Please first install MetaMask and proceed with logging in.\nThen enjoy the PartsChain!"
+      );
+      logger.error(
         "MetaMask is not installed. Please install it and try again."
       );
     }
@@ -97,8 +112,13 @@ const App = () => {
 
   async function authenticate() {
     if (permittedAccounts.includes(global.account)) {
-      global.isAuthenticated = true;
-      console.log("Authenticated");
+      global.isAuthorized = true;
+      logger.log("User authorized");
+    } else {
+      setLoginTitle("Authorization required.");
+      setLoginMsg(
+        "Your account cannot be authorized. Please contact your manager and receive necessary permissions.\nThen enjoy the PartsChain!"
+      );
     }
   }
 
@@ -126,7 +146,7 @@ const App = () => {
     setRetryLogin(!tryLogin);
   }
 
-  if (global.isAuthenticated) {
+  if (global.isAuthorized) {
     return (
       <BrowserRouter>
         <div className="bg">
@@ -154,7 +174,7 @@ const App = () => {
   } else {
     return (
       <div>
-        <LoginPage />;
+        <LoginPage subtitle={loginTitle} msg={loginMsg} />;
         <button className="Retry" onClick={retryLogin}>
           {" "}
           Log in{" "}

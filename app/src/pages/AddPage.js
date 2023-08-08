@@ -19,7 +19,7 @@ const AddPage = ({ addShip, addPart, addRecord }) => {
       <h1 className="title">ADD</h1>
       <p className="descr">
         On this page you can add a new ship, add a new part to an exisiting ship
-        or add a new maintance record.
+        or add a new maintenance record.
       </p>
 
       <div className="btn-group-vertical">
