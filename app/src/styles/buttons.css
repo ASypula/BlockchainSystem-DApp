@@ -19,7 +19,7 @@ button.Add {
   margin: 10px;
   color: #333333;
   display: inline-block;
-  background-color: rgba(16, 41, 121, 0.05);
+  background-color: rgba(78, 155, 107, 0.05);
   line-height: 20px;
   list-style: none;
   transition: all 200ms;
@@ -27,12 +27,17 @@ button.Add {
 
 button.Close {
   margin: 10px;
-  color: #8a1919;
-  background-color: rgba(17, 17, 17, 0.5);
+  color: #000000;
+  background-color: rgba(109, 109, 109, 0.5);
 }
 
 button.Update {
   margin: 10px;
-  color: #0a8f41;
-  background-color: rgba(17, 17, 17, 0.5);
+  color: #000000;
+  background-color: rgba(67, 138, 91, 0.5);
+}
+
+button.Retry {
+  margin-top: 60px;
+  margin-left: 200px;
 }

@@ -1,27 +1,42 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import ErrorModal from "./ErrorModal";
+import InfoModal from "./InfoModal";
 import ShipsList from "./ShipsList";
 import Logger from "../Logger";
 
 const logger = new Logger();
 
+/**
+ * Form for adding a new part to a ship
+ * @param   {string} text text to be displayed on the Add button
+ * @param   {function} addFunction function to be invoked to add new ship
+ * @return  modal with part adding form
+ */
 function AddPartForm({ text, addFunction }) {
+  // name of the part
   const [name, setName] = useState();
-
+  // is the modal form visible
   const [show, setShow] = useState(false);
 
-  const handleClose = () => {
-    setShow(false);
-    window.location.reload(false);
-  };
-  const handleShow = () => setShow(true);
-
-  // error msg
+  //error msg
   const [errorMsg, setErrorMsg] = useState("");
   // is the error modal displayed
   const [showError, setShowError] = useState(false);
 
+  //info msg
+  const [infoMsg, setInfoMsg] = useState("");
+  // is the info modal displayed
+  const [showInfo, setShowInfo] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+    setName("");
+    setShip("");
+  };
+  const handleShow = () => setShow(true);
+
+  // ship to which new part should be added
   const [chosenShip, setShip] = useState("");
   const handleChange = (e) => setShip(e.target.value);
 
@@ -29,12 +44,13 @@ function AddPartForm({ text, addFunction }) {
     e.preventDefault();
     try {
       await addFunction(chosenShip, name);
+      setShowInfo(true);
+      setInfoMsg(`Part ${name} added successfully to the ship ${chosenShip}.`);
       logger.log(`New part ${name} added to ship ${chosenShip} to blockchain.`);
-      // const result = await addFunction(name).catch(err=>console.log(err));
     } catch (err) {
       setShowError(true);
       setErrorMsg("Not possible to add this part name.");
-      console.error("Error in adding part");
+      logger.error("Error in adding part");
     }
     handleClose();
   };
@@ -86,6 +102,13 @@ function AddPartForm({ text, addFunction }) {
           showError={showError}
           setShowError={setShowError}
           errorMessage={errorMsg}
+        />
+      }
+      {
+        <InfoModal
+          showInfo={showInfo}
+          setShowInfo={setShowInfo}
+          infoMessage={infoMsg}
         />
       }
     </>

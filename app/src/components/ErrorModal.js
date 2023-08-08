@@ -1,5 +1,12 @@
 import Modal from "react-bootstrap/Modal";
 
+/**
+ * Modal displaying error message
+ * @param   {boolean} showError if the modal should be displayed
+ * @param   {function} setShowError function to change visiblity of modal
+ * @param   {string} errorMessage text of the error message
+ * @return  modal with error message
+ */
 function ErrorModal({ showError, setShowError, errorMessage }) {
   const handleClose = () => setShowError(false);
 

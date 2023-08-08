@@ -6,6 +6,12 @@ import Logger from "../Logger";
 
 const logger = new Logger();
 
+/**
+ * Form for adding a new ship to the database
+ * @param   {string} text text to be displayed on the Add button
+ * @param   {function} addFunction function to be invoked to add new ship
+ * @return  modal with ship adding form
+ */
 function AddShipForm({ text, addFunction }) {
   // name of the ship
   const [name, setName] = useState();
@@ -32,11 +38,10 @@ function AddShipForm({ text, addFunction }) {
       setShowInfo(true);
       setInfoMsg(`Ship ${name} added successfully.`);
       logger.log(`New ship ${name} added to blockchain.`);
-      // const result = await addFunction(name).catch(err=>console.log(err));
     } catch (err) {
       setShowError(true);
       setErrorMsg("Not possible to add this ship name.");
-      console.error("Error in adding ship");
+      logger.error("Error in adding ship");
     }
     handleClose();
   };

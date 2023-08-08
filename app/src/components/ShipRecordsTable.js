@@ -1,8 +1,19 @@
 import React from "react";
 import { dateFromContract } from "../utils";
+import Logger from "../Logger";
 
+const logger = new Logger();
+
+// Headers of core information about each record displayed in the table
 const shipDetails = ["Part", "Date", "Description", "File"];
 
+/**
+ * Dynamically updating table with information on maintenace
+ * records for given ship's parts
+ * @param   {list} parts list of parts for a given ship
+ * @param   {list} records sorted list of records so that each entry pertains to equivalent list index of the parts list
+ * @return  table with data about maintenance records
+ */
 function ShipRecordsTable({ parts, records }) {
   const generateFile = (index) => {
     return new Blob([records[index].file], { type: "text/plain" });
@@ -22,6 +33,7 @@ function ShipRecordsTable({ parts, records }) {
   const handleDownload = (index) => {
     const blob = generateFile(index);
     downloadFile(blob, "report.txt");
+    logger.log("File downloaded successfully");
   };
 
   return (

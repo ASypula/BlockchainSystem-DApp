@@ -2,6 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { GiShipWheel } from "react-icons/gi";
 
+/**
+ * Header that allows moving between following pages:
+ * Home, Add, History and About
+ */
 function Header({ name }) {
   return (
     <div className="menuBar">

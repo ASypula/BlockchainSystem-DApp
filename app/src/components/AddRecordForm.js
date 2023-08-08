@@ -3,22 +3,57 @@ import Modal from "react-bootstrap/Modal";
 
 import ShipsList from "./ShipsList";
 import PartsList from "./PartsList";
+import ErrorModal from "./ErrorModal";
+import InfoModal from "./InfoModal";
 import { dateToContract } from "../utils";
 
+import Logger from "../Logger";
+
+const logger = new Logger();
+
+/**
+ * Form for adding a new maintenance record about a ship's part
+ * @param   {string} text text to be displayed on the Add button
+ * @param   {function} addFunction function to be invoked to add new ship
+ * @return  modal with record adding form
+ */
 function AddRecordForm({ text, addFunction }) {
+  // date and description required to submit a new record
   const [date, setDate] = useState();
   const [descr, setDescr] = useState();
 
+  // is the modal form visible
   const [show, setShow] = useState(false);
+
+  //error msg
+  const [errorMsg, setErrorMsg] = useState("");
+  // is the error modal displayed
+  const [showError, setShowError] = useState(false);
+
+  //info msg
+  const [infoMsg, setInfoMsg] = useState("");
+  // is the info modal displayed
+  const [showInfo, setShowInfo] = useState(false);
 
   const handleClose = () => {
     setShow(false);
-    window.location.reload(false);
+    resetForm();
+    //TODO: setShip("");
   };
   const handleShow = () => setShow(true);
 
+  const resetForm = () => {
+    setPart("");
+    setDate("");
+    setDescr("");
+    setFileContent("");
+  };
+
   const [chosenShip, setShip] = useState("");
-  const handleChangeShip = (e) => setShip(e.target.value);
+  const handleChangeShip = (e) => {
+    setShip(e.target.value);
+    resetForm();
+  };
 
   const [chosenPart, setPart] = useState("");
   const handleChangePart = (e) => setPart(e.target.value);
@@ -32,6 +67,7 @@ function AddRecordForm({ text, addFunction }) {
     reader.onload = (event) => {
       const content = event.target.result;
       setFileContent(content);
+      logger.log("File content successfully loaded");
     };
 
     if (file) {
@@ -40,6 +76,22 @@ function AddRecordForm({ text, addFunction }) {
   };
 
   // file setup ends
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await addFunction(chosenShip, chosenPart, date, descr, fileContent);
+      setShowInfo(true);
+      setInfoMsg(`Record for part ${chosenPart} added successfully.`);
+      logger.log(`New record for part ${chosenPart} added to blockchain.`);
+    } catch (err) {
+      setShowError(true);
+      setErrorMsg("Not possible to add this record.");
+      logger.error("Error in adding new record");
+    }
+
+    handleClose();
+  };
 
   return (
     <>
@@ -57,14 +109,7 @@ function AddRecordForm({ text, addFunction }) {
           <Modal.Title>Add record</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              addFunction(chosenShip, chosenPart, date, descr, fileContent);
-              console.log(fileContent);
-            }}
-            id="editmodal"
-          >
+          <form onSubmit={handleSubmit} id="editmodal">
             <div className="blockInput">
               <label>Ship</label>
               <ShipsList value={chosenShip} handleChange={handleChangeShip} />
@@ -115,6 +160,20 @@ function AddRecordForm({ text, addFunction }) {
           </button>
         </Modal.Footer>
       </Modal>
+      {
+        <ErrorModal
+          showError={showError}
+          setShowError={setShowError}
+          errorMessage={errorMsg}
+        />
+      }
+      {
+        <InfoModal
+          showInfo={showInfo}
+          setShowInfo={setShowInfo}
+          infoMessage={infoMsg}
+        />
+      }
     </>
   );
 }
