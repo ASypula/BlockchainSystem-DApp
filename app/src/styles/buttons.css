@@ -17,12 +17,16 @@
 
 button.Add {
   margin: 10px;
+  margin-bottom: 30px;
+  font-size: 20px;
   color: #333333;
   display: inline-block;
-  background-color: rgba(78, 155, 107, 0.05);
+  background-color: rgba(68, 107, 179, 0.2);
   line-height: 20px;
   list-style: none;
   transition: all 200ms;
+  height: 60px;
+  width: 160px;
 }
 
 button.Close {
@@ -37,7 +41,54 @@ button.Update {
   background-color: rgba(67, 138, 91, 0.5);
 }
 
+div.Retry {
+  text-align: center;
+}
+
 button.Retry {
-  margin-top: 60px;
-  margin-left: 200px;
+  background-color: #3b5ebd;
+  border: 0;
+  border-radius: 56px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
+    "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  outline: 0;
+  padding: 16px 21px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button.Retry:before {
+  background-color: initial;
+  background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+  border-radius: 125px;
+  content: "";
+  height: 50%;
+  left: 4%;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  transition: all 0.3s;
+  width: 92%;
+}
+
+button.Retry:hover {
+  box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
+    rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
+  transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+  button.Retry {
+    padding: 16px 48px;
+  }
 }

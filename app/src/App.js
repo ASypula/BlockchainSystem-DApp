@@ -175,10 +175,12 @@ const App = () => {
     return (
       <div>
         <LoginPage subtitle={loginTitle} msg={loginMsg} />;
-        <button className="Retry" onClick={retryLogin}>
-          {" "}
-          Log in{" "}
-        </button>
+        <div className="Retry">
+          <button className="Retry" onClick={retryLogin}>
+            {" "}
+            Log in{" "}
+          </button>
+        </div>
       </div>
     );
   }

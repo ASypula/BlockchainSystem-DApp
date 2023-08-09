@@ -7,8 +7,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-repeat: no-repeat;
-  background-image: url("https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-  /* background-image: linear-gradient(rgba(185, 240, 250, 0.915), rgba(255, 255, 255, 0.5)), url("https://cdn.pixabay.com/photo/2015/06/28/12/20/water-824418_1280.jpg");  */
+  background-size: cover;
+  background-image: url("https://img.freepik.com/free-photo/fantastic-seascape-with-ripples_1232-424.jpg?w=1380&t=st=1691605928~exp=1691606528~hmac=ac440ffccf49678f6e029cc6e64a4394ae0ff1689d46134aa5c7224fd2f72fd3");
 }
 
 code {

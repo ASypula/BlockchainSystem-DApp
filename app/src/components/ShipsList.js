@@ -30,7 +30,7 @@ function ShipsList({ value, handleChange }) {
   }, []);
 
   return (
-    <select value={value} onChange={handleChange}>
+    <select className="custom-select" value={value} onChange={handleChange}>
       <option disabled value="">
         Select
       </option>

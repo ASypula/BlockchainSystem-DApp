@@ -8,7 +8,7 @@
   font-size: 45px;
   font-weight: normal;
   line-height: 48px;
-  margin: 0;
+  margin-bottom: 20px;
 }
 
 label {
@@ -22,4 +22,19 @@ label {
 
 .blockInput {
   display: inline-block;
+}
+
+.login {
+  margin: auto;
+  text-align: center;
+  padding: 150px 0;
+}
+
+.loginText {
+  margin-top: 30px;
+}
+
+div.descr {
+  max-width: 1200px;
+  margin: 0 auto;
 }

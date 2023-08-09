@@ -13,10 +13,10 @@ const logger = new Logger();
 const LoginPage = ({ subtitle, msg }) => {
   logger.log("On Login Page");
   return (
-    <div className="page">
+    <div className="login">
       <h1 className="title">LOG IN to PARTS CHAIN</h1>
-      <h3>{subtitle}</h3>
-      <p>{msg}</p>
+      <h3 className="loginText">{subtitle}</h3>
+      <p className="loginText">{msg}</p>
     </div>
   );
 };

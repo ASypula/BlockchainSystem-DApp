@@ -73,7 +73,7 @@ function AddPartForm({ text, addFunction }) {
         <Modal.Body>
           <form onSubmit={handleSubmit} id="editmodal">
             <div className="blockInput">
-              <label>Ship</label>
+              <label className="shipSelect">Ship</label>
               <ShipsList value={chosenShip} handleChange={handleChange} />
             </div>
             <div className="blockInput">

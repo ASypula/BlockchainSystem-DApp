@@ -123,8 +123,6 @@ function AddRecordForm({ text, addFunction }) {
                 ship={chosenShip}
               />
             </div>
-            <div></div>
-            <p>New record CORRECT STYLING</p>
             <div className="blockInput">
               <label>Date</label>
               <input

@@ -31,7 +31,7 @@ function PartsList({ value, handleChange, ship }) {
   }, [ship]);
 
   return (
-    <select value={value} onChange={handleChange}>
+    <select className="custom-select" value={value} onChange={handleChange}>
       <option disabled value="">
         Select
       </option>

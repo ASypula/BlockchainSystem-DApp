@@ -10,7 +10,7 @@
 }
 
 .recordsTable thead tr {
-  background-color: #006898;
+  background-color: #5f86da;
   color: #ffffff;
 }
 
@@ -27,4 +27,176 @@
   background-color: #f3f3f3;
 }
 
-/* https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */
+.blockInput {
+  margin-bottom: 40px;
+}
+
+.custom-select {
+  -webkit-tap-highlight-color: transparent;
+  background-color: #fff;
+  border-radius: 5px;
+  border: solid 1px #e8e8e8;
+  box-sizing: border-box;
+  clear: both;
+  cursor: pointer;
+  display: block;
+  float: right;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: normal;
+  height: 42px;
+  line-height: 40px;
+  outline: none;
+  padding-left: 18px;
+  padding-right: 30px;
+  position: relative;
+  text-align: left !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  width: auto;
+}
+.custom-select:hover {
+  border-color: #dbdbdb;
+}
+.custom-select:active,
+.custom-select.open,
+.custom-select:focus {
+  border-color: #999;
+}
+.custom-select:after {
+  border-bottom: 2px solid #999;
+  border-right: 2px solid #999;
+  content: "";
+  display: block;
+  height: 5px;
+  margin-top: -4px;
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  -webkit-transform-origin: 66% 66%;
+  -ms-transform-origin: 66% 66%;
+  transform-origin: 66% 66%;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  width: 5px;
+}
+.custom-select.open:after {
+  -webkit-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+.custom-select.open .list {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: scale(1) translateY(0);
+  -ms-transform: scale(1) translateY(0);
+  transform: scale(1) translateY(0);
+}
+.custom-select.disabled {
+  border-color: #ededed;
+  color: #999;
+  pointer-events: none;
+}
+.custom-select.disabled:after {
+  border-color: #cccccc;
+}
+.custom-select.wide {
+  width: 100%;
+}
+.custom-select.wide .list {
+  left: 0 !important;
+  right: 0 !important;
+}
+.custom-select.right {
+  float: right;
+}
+.custom-select.right .list {
+  left: auto;
+  right: 0;
+}
+.custom-select.small {
+  font-size: 12px;
+  height: 36px;
+  line-height: 34px;
+}
+.custom-select.small:after {
+  height: 4px;
+  width: 4px;
+}
+.custom-select.small .option {
+  line-height: 34px;
+  min-height: 34px;
+}
+.custom-select .list {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11);
+  box-sizing: border-box;
+  margin-top: 4px;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  -webkit-transform-origin: 50% 0;
+  -ms-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transform: scale(0.75) translateY(-21px);
+  -ms-transform: scale(0.75) translateY(-21px);
+  transform: scale(0.75) translateY(-21px);
+  -webkit-transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25),
+    opacity 0.15s ease-out;
+  transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+  z-index: 9;
+}
+.custom-select .list:hover .option:not(:hover) {
+  background-color: transparent !important;
+}
+.custom-select .option {
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 40px;
+  list-style: none;
+  min-height: 40px;
+  outline: none;
+  padding-left: 18px;
+  padding-right: 29px;
+  text-align: left;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.custom-select .option:hover,
+.custom-select .option.focus,
+.custom-select .option.selected.focus {
+  background-color: #f6f6f6;
+}
+.custom-select .option.selected {
+  font-weight: bold;
+}
+.custom-select .option.disabled {
+  background-color: transparent;
+  color: #999;
+  cursor: default;
+}
+
+.no-csspointerevents .custom-select .list {
+  display: none;
+}
+
+.no-csspointerevents .custom-select.open .list {
+  display: block;
+}
+
+/* https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l - table */
+/* https://codepen.io/Micheal__OG/pen/jyWMLX - select */
