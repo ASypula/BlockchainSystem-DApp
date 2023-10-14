@@ -5,8 +5,8 @@ import "./styles/header.css";
 import "./styles/page.css";
 import "./styles/components.css";
 import Web3 from "web3";
-import dataContractABI from "./blockchain/build/contracts/abi_data.json";
-import accountContractABI from "./blockchain/build/contracts/abi_accounts.json";
+import dataContractABI from "./blockchain/contractsABI/abi_data.json";
+import accountContractABI from "./blockchain/contractsABI/abi_accounts.json";
 
 import AboutPage from "./pages/AboutPage";
 import AddPage from "./pages/AddPage";
