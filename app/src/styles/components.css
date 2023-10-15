@@ -1,5 +1,6 @@
 .recordsTable {
   border-collapse: collapse;
+  table-layout: fixed;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -17,6 +18,8 @@
 .recordsTable th,
 .recordsTable td {
   padding: 12px 15px;
+  max-width: 400px;
+  word-wrap: break-word;
 }
 
 .recordsTable tbody tr {
