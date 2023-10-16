@@ -1,6 +1,6 @@
 const DataContract = artifacts.require("DataContract");
 const truffleAssert = require("truffle-assertions");
-//TODO: Add info about truffle-assertions and about solidity-coverage
+
 contract("DataContractTestShips", (accounts) => {
   const shipName1 = "ship1";
   const shipName2 = "ship2";

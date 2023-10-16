@@ -2,13 +2,22 @@
   text-align: center;
 }
 
+.page-login {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+
 .title {
   color: rgb(65, 92, 165);
   font-family: "Trocchi", serif;
   font-size: 45px;
   font-weight: normal;
   line-height: 48px;
-  margin: 0;
+}
+
+.login {
+  margin-bottom: 30px;
 }
 
 label {
