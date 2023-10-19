@@ -1,6 +1,7 @@
-import React from "react";
+import { React, useState } from "react";
 import { dateFromContract } from "../utils";
 import Logger from "../Logger";
+import DetailPartHistoryModal from "./DetailPartHistoryModal";
 
 const logger = new Logger();
 
@@ -15,9 +16,16 @@ const shipDetails = ["Part", "Date", "Description", "File"];
  * @return  table with data about maintenance records
  */
 function ShipRecordsTable({ parts, records }) {
+  // is the detail part's history modal displayed
+  const [showDetails, setShowDetails] = useState(false);
+
+  const [chosenPart, setChosenPart] = useState("");
+
   const generateFile = (index) => {
     return new Blob([records[index].file], { type: "text/plain" });
   };
+
+  //TODO: add partName as var
 
   const downloadFile = (blob, filename) => {
     const url = URL.createObjectURL(blob);
@@ -34,6 +42,11 @@ function ShipRecordsTable({ parts, records }) {
     const blob = generateFile(index);
     downloadFile(blob, "report.txt");
     logger.log("File downloaded successfully");
+  };
+
+  const displayHistory = (partName) => {
+    setChosenPart(partName);
+    setShowDetails(true);
   };
 
   return (
@@ -59,11 +72,24 @@ function ShipRecordsTable({ parts, records }) {
                     {"download"}
                   </button>
                 </td>
+                <td>
+                  {" "}
+                  <button onClick={() => displayHistory(partName)}>
+                    {"details"}
+                  </button>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      {
+        <DetailPartHistoryModal
+          partName={chosenPart}
+          show={showDetails}
+          setShow={setShowDetails}
+        />
+      }
     </div>
   );
 }
