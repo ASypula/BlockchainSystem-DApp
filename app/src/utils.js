@@ -7,3 +7,15 @@ export function dateToContract(date) {
 export function dateFromContract(timestamp) {
   return new Date(Number(timestamp) * 1000).toDateString();
 }
+
+// Downloads a provided file to the user's browser
+export function downloadFile(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  URL.revokeObjectURL(url);
+  document.body.removeChild(a);
+}

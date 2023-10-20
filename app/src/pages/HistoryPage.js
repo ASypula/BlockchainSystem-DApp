@@ -59,7 +59,11 @@ const HistoryPage = () => {
         <ShipsList value={chosenShip} handleChange={handleChangeShip} />
       </div>
       <div>
-        <ShipRecordsTable parts={partNames} records={recentRecords} />
+        <ShipRecordsTable
+          ship={chosenShip}
+          parts={partNames}
+          records={recentRecords}
+        />
       </div>
     </div>
   );

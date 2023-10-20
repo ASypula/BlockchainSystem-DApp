@@ -83,6 +83,19 @@ contract DataContract {
     return (partNames[ship], latestRecords);
   }
 
+  function getPartRecords(string memory ship, string memory part, uint maxRecords) public returns (Record[] memory){
+    emit Log("Preparing to load history records for part");
+    uint nrRecords = allRecords[ship][part].length < maxRecords? allRecords[ship][part].length : maxRecords;
+    Record[] memory historyRecords = new Record[](nrRecords);
+
+    // Get the nrRecords latest records for required part
+    for (uint256 i = 0 ; i < nrRecords ; i++) {
+      historyRecords[i] = allRecords[ship][part][nrRecords-i-1];
+    }
+    emit Log("History records loaded successfully");
+    return historyRecords;
+  }
+
   function areSimilarStrings(string memory a, string memory b) private pure  returns (bool) {
     return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
   }

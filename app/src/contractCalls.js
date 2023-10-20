@@ -69,3 +69,19 @@ export async function getLastRecords(contract, shipName) {
   logger.log("From contract function, last record loaded successfully.");
   return [partNames, latestRecords];
 }
+
+export async function getHistoryPartRecords(
+  contract,
+  shipName,
+  partName,
+  count
+) {
+  logger.log(
+    `From contract function, loading ${count} last records for ${partName}.`
+  );
+  const result = await contract.methods
+    .getPartRecords(shipName, partName, count)
+    .call();
+  logger.log("From contract function, history records loaded successfully.");
+  return result;
+}
