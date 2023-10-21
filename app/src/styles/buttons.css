@@ -38,9 +38,8 @@ button.Update {
 }
 
 button.Retry {
-  top: 60%;
-  left: 50%;
   position: absolute;
+  left: 45%;
   height: 50px;
   width: 120px;
   color: #fff;

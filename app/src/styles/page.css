@@ -5,7 +5,7 @@
 .page-login {
   position: absolute;
   top: 30%;
-  left: 30%;
+  left: 25%;
 }
 
 .title {
@@ -31,4 +31,14 @@ label {
 
 .blockInput {
   display: inline-block;
+}
+
+.descr {
+  text-align: center;
+  max-width: 70%;
+  margin: auto;
+}
+
+.descr1 {
+  margin-top: 4%;
 }
