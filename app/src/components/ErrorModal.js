@@ -21,7 +21,7 @@ function ErrorModal({ showError, setShowError, errorMessage }) {
         <Modal.Title>Error</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <label>{errorMessage}</label>
+        <p className="informMsg">{errorMessage}</p>
       </Modal.Body>
       <Modal.Footer>
         <button className="Button Close" onClick={handleClose}>

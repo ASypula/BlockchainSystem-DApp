@@ -22,3 +22,8 @@
   display: inline;
   white-space: nowrap;
 }
+
+.headerT {
+  font-size: 20px;
+  font-weight: 500;
+}

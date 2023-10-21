@@ -4,7 +4,7 @@
   border-width: 0;
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
   padding: 10px 12px;
   text-align: center;
@@ -13,6 +13,13 @@
   touch-action: manipulation;
   vertical-align: baseline;
   white-space: nowrap;
+}
+
+.addPage {
+  margin: 20px;
+  line-height: 25px;
+  width: 150px;
+  background-color: rgba(81, 123, 212, 0.15);
 }
 
 button.Add {

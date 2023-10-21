@@ -30,8 +30,8 @@ const logger = new Logger();
 const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
 
 // Addresses of contracts already deployed to blockchain
-const contractAddressData = "0x26006Bf5a3E7917B64A7A8d8C8AF11331E01920E";
-const contractAddressAccounts = "0x61C44DBfcf8885E05C6087df5b38369fc2665871";
+const contractAddressData = "0x51e528F45Bf155CaD4271772917913ff6d65524f";
+const contractAddressAccounts = "0x634Df05591ca09f770C41bc7bc9b89dcA6da9b8f";
 
 /**
  * Main component, enables routing and handles user's connection
@@ -173,8 +173,8 @@ const App = () => {
     );
   } else {
     return (
-      <div>
-        <LoginPage subtitle={loginTitle} msg={loginMsg} />;
+      <div className="page-login">
+        <LoginPage subtitle={loginTitle} msg={loginMsg} />
         <button className="Retry" onClick={retryLogin}>
           {" "}
           Log in{" "}

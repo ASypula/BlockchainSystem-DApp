@@ -17,7 +17,7 @@ const AddPage = ({ addShip, addPart, addRecord }) => {
   return (
     <div className="page">
       <h1 className="title">ADD</h1>
-      <p className="descr">
+      <p className="descr informMsg">
         On this page you can add a new ship, add a new part to an exisiting ship
         or add a new maintenance record.
       </p>

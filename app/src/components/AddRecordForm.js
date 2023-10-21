@@ -95,7 +95,7 @@ function AddRecordForm({ text, addFunction }) {
 
   return (
     <>
-      <button className="Button Add" onClick={handleShow}>
+      <button className="Button addPage" onClick={handleShow}>
         {text}
       </button>
 

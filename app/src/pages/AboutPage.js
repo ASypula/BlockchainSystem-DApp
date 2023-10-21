@@ -16,7 +16,7 @@ const AboutPage = () => {
         maintenance
       </h2>
       <p className="descr1">
-        Most important features include:
+        <h4>Most important features include: </h4>
         <ul>
           <li>Immutable Records</li>
           <li>Transparent History</li>
@@ -25,6 +25,13 @@ const AboutPage = () => {
           <li>Effortless Accessibility</li>
           <li>Advanced Inspection & Monitoring</li>
         </ul>
+      </p>
+      <p className="descr1">
+        For additional information, source code and technical documentation,
+        please visit the GitHub project page: <br></br>
+        <a href="https://github.com/ASypula/BlockchainSystem-DApp">
+          ASypula/BlockchainSystem-DApp
+        </a>
       </p>
     </div>
   );
