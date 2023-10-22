@@ -142,7 +142,6 @@ function AddRecordForm({ text, addFunction }) {
               />
             </div>
             <div></div>
-            <p>New record CORRECT STYLING</p>
             <div className="blockInput">
               <label>Date</label>
               <input
@@ -163,9 +162,17 @@ function AddRecordForm({ text, addFunction }) {
                 }}
               />
             </div>
-            {/* TODO: File upload check */}
             <div>
-              <input type="file" onChange={handleFileChange} />
+              <label>File</label>
+              <label for="file" className="Button">
+                Select file
+              </label>
+              <input
+                id="file"
+                style={{ visibility: "hidden" }}
+                type="file"
+                onChange={handleFileChange}
+              />
             </div>
           </form>
         </Modal.Body>

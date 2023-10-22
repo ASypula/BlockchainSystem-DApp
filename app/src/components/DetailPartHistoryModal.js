@@ -7,8 +7,9 @@ import PartHistoryTable from "./PartHistoryTable";
 import Logger from "../Logger";
 
 const logger = new Logger();
-const count = 4;
-//TODO: Change count
+
+// Max number of returned results
+const MAX_RESULTS = 100;
 
 /**
  * Modal with history of changes for given part
@@ -31,7 +32,7 @@ function DetailPartHistoryModal({ shipName, partName, show, setShow }) {
           global.contract,
           shipName,
           partName,
-          count
+          MAX_RESULTS
         );
         setRecords(historyRecords);
         logger.log(
@@ -44,7 +45,7 @@ function DetailPartHistoryModal({ shipName, partName, show, setShow }) {
     };
 
     fetchPartRecords();
-  }, [partName]);
+  }, [partName, records, shipName]);
 
   return (
     <>
