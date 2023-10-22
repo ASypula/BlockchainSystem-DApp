@@ -79,15 +79,33 @@ function AddRecordForm({ text, addFunction }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await addFunction(chosenShip, chosenPart, date, descr, fileContent);
-      setShowInfo(true);
-      setInfoMsg(`Record for part ${chosenPart} added successfully.`);
-      logger.log(`New record for part ${chosenPart} added to blockchain.`);
-    } catch (err) {
+    if (chosenShip.length === 0) {
       setShowError(true);
-      setErrorMsg("Not possible to add this record.");
-      logger.error("Error in adding new record");
+      setErrorMsg("Ship has to be chosen.");
+      logger.error("Ship name missing in record addition");
+    } else if (chosenPart.length === 0) {
+      setShowError(true);
+      setErrorMsg("Part has to be chosen.");
+      logger.error("Part name missing in record addition");
+    } else if (date.length === 0) {
+      setShowError(true);
+      setErrorMsg("Date has to be chosen.");
+      logger.error("Date missing in record addition");
+    } else if (descr.length === 0) {
+      setShowError(true);
+      setErrorMsg("Some description of the record has to be provided.");
+      logger.error("Description missing in record addition");
+    } else {
+      try {
+        await addFunction(chosenShip, chosenPart, date, descr, fileContent);
+        setShowInfo(true);
+        setInfoMsg(`Record for part ${chosenPart} added successfully.`);
+        logger.log(`New record for part ${chosenPart} added to blockchain.`);
+      } catch (err) {
+        setShowError(true);
+        setErrorMsg("Not possible to add this record.");
+        logger.error("Error in adding new record");
+      }
     }
 
     handleClose();
@@ -95,7 +113,7 @@ function AddRecordForm({ text, addFunction }) {
 
   return (
     <>
-      <button className="Button addPage" onClick={handleShow}>
+      <button className="Button main" onClick={handleShow}>
         {text}
       </button>
 

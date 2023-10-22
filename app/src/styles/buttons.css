@@ -15,7 +15,7 @@
   white-space: nowrap;
 }
 
-.addPage {
+.main {
   margin: 20px;
   line-height: 25px;
   width: 150px;
@@ -46,21 +46,8 @@ button.Update {
 
 button.Retry {
   position: absolute;
-  left: 45%;
+  left: 43%;
   height: 50px;
   width: 120px;
-  color: #fff;
-  background-color: #2d70d6;
-  border-color: #0d6efd;
-  display: inline-block;
-  font-weight: 400;
-  line-height: 1.5;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  outline: 0;
-  text-align: center;
-  border: 1px solid transparent;
-  padding: 6px 12px;
-  font-size: 16px;
-  border-radius: 0.25rem;
+  background-color: rgba(81, 123, 212, 0.15);
 }

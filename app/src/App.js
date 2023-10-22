@@ -175,7 +175,7 @@ const App = () => {
     return (
       <div className="page-login">
         <LoginPage subtitle={loginTitle} msg={loginMsg} />
-        <button className="Retry" onClick={retryLogin}>
+        <button className="Button Retry" onClick={retryLogin}>
           {" "}
           Log in{" "}
         </button>
