@@ -33,22 +33,28 @@ function AddShipForm({ text, addFunction }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await addFunction(name);
-      setShowInfo(true);
-      setInfoMsg(`Ship ${name} added successfully.`);
-      logger.log(`New ship ${name} added to blockchain.`);
-    } catch (err) {
+    if (name.length === 0) {
       setShowError(true);
-      setErrorMsg("Not possible to add this ship name.");
-      logger.error("Error in adding ship");
+      setErrorMsg("Ship name cannot be empty.");
+      logger.error("Ship name cannot be empty in ship addition");
+    } else {
+      try {
+        await addFunction(name);
+        setShowInfo(true);
+        setInfoMsg(`Ship ${name} added successfully.`);
+        logger.log(`New ship ${name} added to blockchain.`);
+      } catch (err) {
+        setShowError(true);
+        setErrorMsg("Not possible to add this ship name.");
+        logger.error("Error in adding ship");
+      }
     }
     handleClose();
   };
 
   return (
     <>
-      <button className="Button Add" onClick={handleShow}>
+      <button className="Button main" onClick={handleShow}>
         {text}
       </button>
 

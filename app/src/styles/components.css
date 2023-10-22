@@ -1,22 +1,26 @@
 .recordsTable {
   border-collapse: collapse;
+  table-layout: fixed;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
-  font-size: 0.9em;
+  font-size: 15px;
   font-family: sans-serif;
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .recordsTable thead tr {
-  background-color: #006898;
+  background-color: rgba(81, 123, 212, 0.6);
   color: #ffffff;
+  font-size: 18px;
 }
 
 .recordsTable th,
 .recordsTable td {
   padding: 12px 15px;
+  max-width: 400px;
+  word-wrap: break-word;
 }
 
 .recordsTable tbody tr {
@@ -25,6 +29,10 @@
 
 .recordsTable tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
+}
+
+.informMsg {
+  font-size: 20px;
 }
 
 /* https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */

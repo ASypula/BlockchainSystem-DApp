@@ -42,22 +42,39 @@ function AddPartForm({ text, addFunction }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await addFunction(chosenShip, name);
-      setShowInfo(true);
-      setInfoMsg(`Part ${name} added successfully to the ship ${chosenShip}.`);
-      logger.log(`New part ${name} added to ship ${chosenShip} to blockchain.`);
-    } catch (err) {
+    if (chosenShip.length === 0) {
       setShowError(true);
-      setErrorMsg("Not possible to add this part name.");
-      logger.error("Error in adding part");
+      setErrorMsg("Ship has to be chosen.");
+      logger.error("One ship has to be chosen in part addition");
+    } else if (name.length === 0) {
+      setShowError(true);
+      setErrorMsg("Part name cannot be empty.");
+      logger.error("Part name cannot be empty in part addition");
+    } else {
+      try {
+        await addFunction(chosenShip, name);
+        setShowInfo(true);
+        setInfoMsg(
+          `Part ${name} added successfully to the ship ${chosenShip}.`
+        );
+        logger.log(
+          `New part ${name} added to ship ${chosenShip} to blockchain.`
+        );
+      } catch (err) {
+        setShowError(true);
+        setErrorMsg(
+          `Not possible to add ${name}. New part name for the ship ${chosenShip} must be unique.`
+        );
+        logger.error("Error in adding part");
+      }
     }
+
     handleClose();
   };
 
   return (
     <>
-      <button className="Button Add" onClick={handleShow}>
+      <button className="Button main" onClick={handleShow}>
         {text}
       </button>
 

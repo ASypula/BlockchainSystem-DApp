@@ -21,7 +21,7 @@ function InfoModal({ showInfo, setShowInfo, infoMessage }) {
         <Modal.Title>Information</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <label>{infoMessage}</label>
+        <p className="informMsg">{infoMessage}</p>
       </Modal.Body>
       <Modal.Footer>
         <button className="Button Close" onClick={handleClose}>

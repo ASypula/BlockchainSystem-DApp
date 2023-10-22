@@ -9,8 +9,9 @@ def save_ABI(path, target):
     new_file.close()
     f.close()
 
-target = "./app/src/blockchain/contractsABI/abi_data.json"
-path = "./app/src/blockchain/build/contracts/DataContract.json"
-# target = "./app/src/blockchain/build/contracts/abi_accounts.json"
-# path = "./app/src/blockchain/build/contracts/AccountContract.json"
-save_ABI(path, target)
+target_data = "./app/src/blockchain/contractsABI/abi_data.json"
+path_data = "./app/src/blockchain/build/contracts/DataContract.json"
+target_accounts = "./app/src/blockchain/contractsABI/abi_accounts.json"
+path_accounts = "./app/src/blockchain/build/contracts/AccountContract.json"
+save_ABI(path_data, target_data)
+save_ABI(path_accounts, target_accounts)
