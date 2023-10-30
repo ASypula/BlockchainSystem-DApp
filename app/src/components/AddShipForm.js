@@ -33,7 +33,7 @@ function AddShipForm({ text, addFunction }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (name.length === 0) {
+    if (typeof name === "undefined" || name.length === 0) {
       setShowError(true);
       setErrorMsg("Ship name cannot be empty.");
       logger.error("Ship name cannot be empty in ship addition");

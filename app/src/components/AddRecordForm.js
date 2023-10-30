@@ -91,7 +91,7 @@ function AddRecordForm({ text, addFunction }) {
       setShowError(true);
       setErrorMsg("Date has to be chosen.");
       logger.error("Date missing in record addition");
-    } else if (descr.length === 0) {
+    } else if (typeof descr === "undefined" || descr.length === 0) {
       setShowError(true);
       setErrorMsg("Some description of the record has to be provided.");
       logger.error("Description missing in record addition");

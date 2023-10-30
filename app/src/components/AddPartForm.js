@@ -46,7 +46,7 @@ function AddPartForm({ text, addFunction }) {
       setShowError(true);
       setErrorMsg("Ship has to be chosen.");
       logger.error("One ship has to be chosen in part addition");
-    } else if (name.length === 0) {
+    } else if (typeof name === "undefined" || name.length === 0) {
       setShowError(true);
       setErrorMsg("Part name cannot be empty.");
       logger.error("Part name cannot be empty in part addition");

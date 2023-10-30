@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { dateFromContract, downloadFile } from "../utils";
 import Logger from "../Logger";
 
