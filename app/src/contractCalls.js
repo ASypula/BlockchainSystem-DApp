@@ -1,5 +1,6 @@
 import Logger from "./Logger";
 
+const MAX_GAS = 2000000;
 const logger = new Logger();
 
 // Functions that interact directly with deployed contract
@@ -43,7 +44,7 @@ export async function addRecordContract(
   logger.log("From contract function, adding new record.");
   await contract.methods
     .addRecord(shipName, partName, date, descr, file)
-    .send({ from: account, gas: 2094000 });
+    .send({ from: account, gas: MAX_GAS });
   logger.log(
     `New record added to part ${partName} in ship ${shipName} to blockchain.`
   );
