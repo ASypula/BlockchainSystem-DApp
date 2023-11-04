@@ -18,12 +18,12 @@ function AddShipForm({ text, addFunction }) {
   // is the modal form visible
   const [show, setShow] = useState(false);
 
-  //error msg
+  // error msg
   const [errorMsg, setErrorMsg] = useState("");
   // is the error modal displayed
   const [showError, setShowError] = useState(false);
 
-  //info msg
+  // info msg
   const [infoMsg, setInfoMsg] = useState("");
   // is the info modal displayed
   const [showInfo, setShowInfo] = useState(false);

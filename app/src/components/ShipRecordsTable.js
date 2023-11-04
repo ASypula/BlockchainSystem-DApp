@@ -5,14 +5,13 @@ import DetailPartHistoryModal from "./DetailPartHistoryModal";
 
 const logger = new Logger();
 
-//TODO: finish + params
-
 // Headers of core information about each record displayed in the table
 const shipDetails = ["Part", "Date", "Description", "File", "Info"];
 
 /**
  * Dynamically updating table with information on maintenace
  * records for given ship's parts
+ * @param   {text} ship chosen ship
  * @param   {list} parts list of parts for a given ship
  * @param   {list} records sorted list of records so that each entry pertains to equivalent list index of the parts list
  * @return  table with data about maintenance records

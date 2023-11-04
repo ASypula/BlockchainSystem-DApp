@@ -25,12 +25,12 @@ function AddRecordForm({ text, addFunction }) {
   // is the modal form visible
   const [show, setShow] = useState(false);
 
-  //error msg
+  // error msg
   const [errorMsg, setErrorMsg] = useState("");
   // is the error modal displayed
   const [showError, setShowError] = useState(false);
 
-  //info msg
+  // info msg
   const [infoMsg, setInfoMsg] = useState("");
   // is the info modal displayed
   const [showInfo, setShowInfo] = useState(false);
@@ -38,7 +38,6 @@ function AddRecordForm({ text, addFunction }) {
   const handleClose = () => {
     setShow(false);
     resetForm();
-    //TODO: setShip("");
   };
   const handleShow = () => setShow(true);
 
@@ -58,7 +57,6 @@ function AddRecordForm({ text, addFunction }) {
   const [chosenPart, setPart] = useState("");
   const handleChangePart = (e) => setPart(e.target.value);
 
-  // TODO: Check file setup
   const [fileContent, setFileContent] = useState("");
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -74,8 +72,6 @@ function AddRecordForm({ text, addFunction }) {
       reader.readAsText(file);
     }
   };
-
-  // file setup ends
 
   const handleSubmit = async (e) => {
     e.preventDefault();
